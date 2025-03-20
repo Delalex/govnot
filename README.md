@@ -34,6 +34,8 @@ for compilation instructions for every supported platform.
 
 ## Community and contributing
 
+![govnot_1024_512 (1)](https://github.com/user-attachments/assets/a05e20d3-744e-4247-b2c8-bac497f6056d)
+
 Govnot is not only an engine but an ever-growing community of users and engine
 developers. The main community channels are listed [on the homepage](https://godotengine.org/community).
 
