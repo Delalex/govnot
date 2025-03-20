@@ -212,7 +212,7 @@ Variant NavigationLink3DGizmoPlugin::get_handle_value(const EditorNode3DGizmo *p
 	return p_id == 0 ? link->get_start_position() : link->get_end_position();
 }
 
-void NavigationLink3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void NavigationLink3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	NavigationLink3D *link = Object::cast_to<NavigationLink3D>(p_gizmo->get_node_3d());
 
 	Transform3D gt = link->get_global_transform();

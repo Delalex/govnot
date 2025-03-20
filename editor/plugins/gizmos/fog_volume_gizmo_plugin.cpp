@@ -72,7 +72,7 @@ void FogVolumeGizmoPlugin::begin_handle_action(const EditorNode3DGizmo *p_gizmo,
 	helper->initialize_handle_action(get_handle_value(p_gizmo, p_id, p_secondary), p_gizmo->get_node_3d()->get_global_transform());
 }
 
-void FogVolumeGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void FogVolumeGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	FogVolume *fog_volume = Object::cast_to<FogVolume>(p_gizmo->get_node_3d());
 	Vector3 size = fog_volume->get_size();
 

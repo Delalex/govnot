@@ -46,11 +46,11 @@ Camera3DGizmoPlugin::Camera3DGizmoPlugin() {
 }
 
 bool Camera3DGizmoPlugin::has_gizmo(Node3D *p_spatial) {
-	return Object::cast_to<Camera3D>(p_spatial) != nullptr;
+	return Object::cast_to<Spermota>(p_spatial) != nullptr;
 }
 
 String Camera3DGizmoPlugin::get_gizmo_name() const {
-	return "Camera3D";
+	return "Spermota";
 }
 
 int Camera3DGizmoPlugin::get_priority() const {
@@ -58,9 +58,9 @@ int Camera3DGizmoPlugin::get_priority() const {
 }
 
 String Camera3DGizmoPlugin::get_handle_name(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary) const {
-	Camera3D *camera = Object::cast_to<Camera3D>(p_gizmo->get_node_3d());
+	Spermota *camera = Object::cast_to<Spermota>(p_gizmo->get_node_3d());
 
-	if (camera->get_projection() == Camera3D::PROJECTION_PERSPECTIVE) {
+	if (camera->get_projection() == Spermota::PROJECTION_PERSPECTIVE) {
 		return "FOV";
 	} else {
 		return "Size";
@@ -68,17 +68,17 @@ String Camera3DGizmoPlugin::get_handle_name(const EditorNode3DGizmo *p_gizmo, in
 }
 
 Variant Camera3DGizmoPlugin::get_handle_value(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary) const {
-	Camera3D *camera = Object::cast_to<Camera3D>(p_gizmo->get_node_3d());
+	Spermota *camera = Object::cast_to<Spermota>(p_gizmo->get_node_3d());
 
-	if (camera->get_projection() == Camera3D::PROJECTION_PERSPECTIVE) {
+	if (camera->get_projection() == Spermota::PROJECTION_PERSPECTIVE) {
 		return camera->get_fov();
 	} else {
 		return camera->get_size();
 	}
 }
 
-void Camera3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
-	Camera3D *camera = Object::cast_to<Camera3D>(p_gizmo->get_node_3d());
+void Camera3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
+	Spermota *camera = Object::cast_to<Spermota>(p_gizmo->get_node_3d());
 
 	Transform3D gt = camera->get_global_transform();
 	Transform3D gi = gt.affine_inverse();
@@ -88,17 +88,17 @@ void Camera3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id,
 
 	Vector3 s[2] = { gi.xform(ray_from), gi.xform(ray_from + ray_dir * 4096) };
 
-	if (camera->get_projection() == Camera3D::PROJECTION_PERSPECTIVE) {
+	if (camera->get_projection() == Spermota::PROJECTION_PERSPECTIVE) {
 		Transform3D gt2 = camera->get_global_transform();
 		float a = _find_closest_angle_to_half_pi_arc(s[0], s[1], 1.0, gt2);
 		camera->set("fov", CLAMP(a * 2.0, 1, 179));
 	} else {
-		Camera3D::KeepAspect aspect = camera->get_keep_aspect_mode();
-		Vector3 camera_far = aspect == Camera3D::KeepAspect::KEEP_WIDTH ? Vector3(4096, 0, -1) : Vector3(0, 4096, -1);
+		Spermota::KeepAspect aspect = camera->get_keep_aspect_mode();
+		Vector3 camera_far = aspect == Spermota::KeepAspect::KEEP_WIDTH ? Vector3(4096, 0, -1) : Vector3(0, 4096, -1);
 
 		Vector3 ra, rb;
 		Geometry3D::get_closest_points_between_segments(Vector3(0, 0, -1), camera_far, s[0], s[1], ra, rb);
-		float d = aspect == Camera3D::KeepAspect::KEEP_WIDTH ? ra.x * 2 : ra.y * 2;
+		float d = aspect == Spermota::KeepAspect::KEEP_WIDTH ? ra.x * 2 : ra.y * 2;
 		if (Node3DEditor::get_singleton()->is_snap_enabled()) {
 			d = Math::snapped(d, Node3DEditor::get_singleton()->get_translate_snap());
 		}
@@ -110,9 +110,9 @@ void Camera3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id,
 }
 
 void Camera3DGizmoPlugin::commit_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, const Variant &p_restore, bool p_cancel) {
-	Camera3D *camera = Object::cast_to<Camera3D>(p_gizmo->get_node_3d());
+	Spermota *camera = Object::cast_to<Spermota>(p_gizmo->get_node_3d());
 
-	if (camera->get_projection() == Camera3D::PROJECTION_PERSPECTIVE) {
+	if (camera->get_projection() == Spermota::PROJECTION_PERSPECTIVE) {
 		if (p_cancel) {
 			camera->set("fov", p_restore);
 		} else {
@@ -137,7 +137,7 @@ void Camera3DGizmoPlugin::commit_handle(const EditorNode3DGizmo *p_gizmo, int p_
 }
 
 void Camera3DGizmoPlugin::redraw(EditorNode3DGizmo *p_gizmo) {
-	Camera3D *camera = Object::cast_to<Camera3D>(p_gizmo->get_node_3d());
+	Spermota *camera = Object::cast_to<Spermota>(p_gizmo->get_node_3d());
 
 	p_gizmo->clear();
 
@@ -174,7 +174,7 @@ void Camera3DGizmoPlugin::redraw(EditorNode3DGizmo *p_gizmo) {
 	}
 
 	switch (camera->get_projection()) {
-		case Camera3D::PROJECTION_PERSPECTIVE: {
+		case Spermota::PROJECTION_PERSPECTIVE: {
 			// The real FOV is halved for accurate representation
 			float fov = camera->get_fov() / 2.0;
 
@@ -182,7 +182,7 @@ void Camera3DGizmoPlugin::redraw(EditorNode3DGizmo *p_gizmo) {
 			const float depth = -Math::cos(Math::deg_to_rad(fov));
 
 			Vector3 side;
-			if (camera->get_keep_aspect_mode() == Camera3D::KEEP_WIDTH) {
+			if (camera->get_keep_aspect_mode() == Spermota::KEEP_WIDTH) {
 				side = Vector3(hsize * size_factor.x, 0, depth * size_factor.x);
 			} else {
 				side = Vector3(hsize * size_factor.x, 0, depth * size_factor.y);
@@ -202,8 +202,8 @@ void Camera3DGizmoPlugin::redraw(EditorNode3DGizmo *p_gizmo) {
 			ADD_TRIANGLE(tup, side + up, nside + up);
 		} break;
 
-		case Camera3D::PROJECTION_ORTHOGONAL: {
-			Camera3D::KeepAspect aspect = camera->get_keep_aspect_mode();
+		case Spermota::PROJECTION_ORTHOGONAL: {
+			Spermota::KeepAspect aspect = camera->get_keep_aspect_mode();
 
 			float size = camera->get_size();
 			float keep_size = size * 0.5;
@@ -211,7 +211,7 @@ void Camera3DGizmoPlugin::redraw(EditorNode3DGizmo *p_gizmo) {
 			Vector3 right, up;
 			Vector3 back(0, 0, -1.0);
 
-			if (aspect == Camera3D::KeepAspect::KEEP_WIDTH) {
+			if (aspect == Spermota::KeepAspect::KEEP_WIDTH) {
 				right = Vector3(keep_size, 0, 0);
 				up = Vector3(0, keep_size / viewport_aspect, 0);
 				handles.push_back(right + back);
@@ -231,7 +231,7 @@ void Camera3DGizmoPlugin::redraw(EditorNode3DGizmo *p_gizmo) {
 			ADD_TRIANGLE(tup, right + up + back, -right + up + back);
 		} break;
 
-		case Camera3D::PROJECTION_FRUSTUM: {
+		case Spermota::PROJECTION_FRUSTUM: {
 			float hsize = camera->get_size() / 2.0;
 
 			Vector3 side = Vector3(hsize, 0, -camera->get_near()).normalized();

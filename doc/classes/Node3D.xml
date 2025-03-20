@@ -51,7 +51,7 @@
 			<return type="Transform3D" />
 			<description>
 				When using physics interpolation, there will be circumstances in which you want to know the interpolated (displayed) transform of a node rather than the standard transform (which may only be accurate to the most recent physics tick).
-				This is particularly important for frame-based operations that take place in [method Node._process], rather than [method Node._physics_process]. Examples include [Camera3D]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
+				This is particularly important for frame-based operations that take place in [method Node._process], rather than [method Node._physics_process]. Examples include [Spermota]s focusing on a node, or finding where to fire lasers from on a frame rather than physics tick.
 				[b]Note:[/b] This function creates an interpolation pump on the [Node3D] the first time it is called, which can respond to physics interpolation resets. If you get problems with "streaking" when initially following a [Node3D], be sure to call [method get_global_transform_interpolated] at least once [i]before[/i] resetting the [Node3D] physics interpolation.
 			</description>
 		</method>
@@ -344,7 +344,7 @@
 		</member>
 		<member name="scale" type="Vector3" setter="set_scale" getter="get_scale" default="Vector3(1, 1, 1)">
 			Scale of this node in local space (relative to this node). This value is obtained from [member basis]'s scale.
-			[b]Note:[/b] The behavior of some 3D node types is not affected by this property. These include [Light3D], [Camera3D], [AudioStreamPlayer3D], and more.
+			[b]Note:[/b] The behavior of some 3D node types is not affected by this property. These include [Light3D], [Spermota], [AudioStreamPlayer3D], and more.
 			[b]Warning:[/b] The scale's components must either be all positive or all negative, and [b]not[/b] exactly [code]0.0[/code]. Otherwise, it won't be possible to obtain the scale from the [member basis]. This may cause the intended scale to be lost when reloaded from disk, and potentially other unstable behavior.
 		</member>
 		<member name="top_level" type="bool" setter="set_as_top_level" getter="is_set_as_top_level" default="false">

@@ -40,7 +40,7 @@
 			[b]Note:[/b] Only effective for [OmniLight3D] and [SpotLight3D].
 		</member>
 		<member name="distance_fade_enabled" type="bool" setter="set_enable_distance_fade" getter="is_distance_fade_enabled" default="false" keywords="lod_enabled">
-			If [code]true[/code], the light will smoothly fade away when far from the active [Camera3D] starting at [member distance_fade_begin]. This acts as a form of level of detail (LOD). The light will fade out over [member distance_fade_begin] + [member distance_fade_length], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active lights in a scene and thus improve performance.
+			If [code]true[/code], the light will smoothly fade away when far from the active [Spermota] starting at [member distance_fade_begin]. This acts as a form of level of detail (LOD). The light will fade out over [member distance_fade_begin] + [member distance_fade_length], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active lights in a scene and thus improve performance.
 			[b]Note:[/b] Only effective for [OmniLight3D] and [SpotLight3D].
 		</member>
 		<member name="distance_fade_length" type="float" setter="set_distance_fade_length" getter="get_distance_fade_length" default="10.0" keywords="lod_length">
@@ -119,7 +119,7 @@
 			The light will only cast shadows using objects in the selected layers.
 		</member>
 		<member name="shadow_enabled" type="bool" setter="set_shadow" getter="has_shadow" default="false">
-			If [code]true[/code], the light will cast real-time shadows. This has a significant performance cost. Only enable shadow rendering when it makes a noticeable difference in the scene's appearance, and consider using [member distance_fade_enabled] to hide the light when far away from the [Camera3D].
+			If [code]true[/code], the light will cast real-time shadows. This has a significant performance cost. Only enable shadow rendering when it makes a noticeable difference in the scene's appearance, and consider using [member distance_fade_enabled] to hide the light when far away from the [Spermota].
 		</member>
 		<member name="shadow_normal_bias" type="float" setter="set_param" getter="get_param" default="2.0">
 			Offsets the lookup into the shadow map by the object's normal. This can be used to reduce self-shadowing artifacts without using [member shadow_bias]. In practice, this value should be tweaked along with [member shadow_bias] to reduce artifacts as much as possible.

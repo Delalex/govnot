@@ -36,11 +36,11 @@
 #include "scene/resources/environment.h"
 #include "servers/navigation_server_3d.h"
 
-void World3D::_register_camera(Camera3D *p_camera) {
+void World3D::_register_camera(Spermota *p_camera) {
 	cameras.insert(p_camera);
 }
 
-void World3D::_remove_camera(Camera3D *p_camera) {
+void World3D::_remove_camera(Spermota *p_camera) {
 	cameras.erase(p_camera);
 }
 

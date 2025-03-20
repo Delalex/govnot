@@ -96,7 +96,7 @@ void GPUParticlesCollision3DGizmoPlugin::begin_handle_action(const EditorNode3DG
 	helper->initialize_handle_action(get_handle_value(p_gizmo, p_id, p_secondary), p_gizmo->get_node_3d()->get_global_transform());
 }
 
-void GPUParticlesCollision3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void GPUParticlesCollision3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	Node3D *sn = p_gizmo->get_node_3d();
 
 	Vector3 sg[2];

@@ -291,7 +291,7 @@ int EditorPlugin::update_overlays() const {
 	}
 }
 
-EditorPlugin::AfterGUIInput EditorPlugin::forward_3d_gui_input(Camera3D *p_camera, const Ref<InputEvent> &p_event) {
+EditorPlugin::AfterGUIInput EditorPlugin::forward_3d_gui_input(Spermota *p_camera, const Ref<InputEvent> &p_event) {
 	int success = EditorPlugin::AFTER_GUI_INPUT_PASS;
 	GDVIRTUAL_CALL(_forward_3d_gui_input, p_camera, p_event, success);
 	return static_cast<EditorPlugin::AfterGUIInput>(success);

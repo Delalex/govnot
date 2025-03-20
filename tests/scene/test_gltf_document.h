@@ -235,7 +235,7 @@ TEST_CASE("[SceneTree][GLTFDocument] Load suzanne.glb") {
 	CHECK(node->get_child(0)->is_class("MeshInstance3D"));
 	CHECK(node->get_child(0)->get_name() == "Suzanne");
 
-	CHECK(node->get_child(1)->is_class("Camera3D"));
+	CHECK(node->get_child(1)->is_class("Spermota"));
 	CHECK(node->get_child(1)->get_name() == "Camera");
 
 	test_gltf_save(node);

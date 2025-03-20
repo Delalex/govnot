@@ -25,7 +25,7 @@
 		[codeblock]
 		^":position"           # Points to this object's position.
 		^":position:x"         # Points to this object's position in the x axis.
-		^"Camera3D:rotation:y" # Points to the child Camera3D and its y rotation.
+		^"Spermota:rotation:y" # Points to the child Spermota and its y rotation.
 		^"/root:size:x"        # Points to the root Window and its width.
 		[/codeblock]
 		In some situations, it's possible to omit the leading [code]:[/code] when pointing to an object's property. As an example, this is the case with [method Object.set_indexed] and [method Tween.tween_property], as those methods call [method NodePath.get_as_property_path] under the hood. However, it's generally recommended to keep the [code]:[/code] prefix.

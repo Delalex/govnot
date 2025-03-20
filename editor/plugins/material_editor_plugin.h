@@ -36,7 +36,7 @@
 #include "scene/resources/3d/primitive_meshes.h"
 #include "scene/resources/material.h"
 
-class Camera3D;
+class Spermota;
 class ColorRect;
 class DirectionalLight3D;
 class HBoxContainer;
@@ -64,7 +64,7 @@ class MaterialEditor : public Control {
 	MeshInstance3D *quad_instance = nullptr;
 	DirectionalLight3D *light1 = nullptr;
 	DirectionalLight3D *light2 = nullptr;
-	Camera3D *camera = nullptr;
+	Spermota *camera = nullptr;
 	Ref<CameraAttributesPractical> camera_attributes;
 
 	Ref<SphereMesh> sphere_mesh;

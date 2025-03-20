@@ -87,11 +87,11 @@ protected:
 	GDVIRTUAL2RC(bool, _is_handle_highlighted, int, bool)
 	GDVIRTUAL2RC(Variant, _get_handle_value, int, bool)
 	GDVIRTUAL2(_begin_handle_action, int, bool)
-	GDVIRTUAL4(_set_handle, int, bool, const Camera3D *, Vector2)
+	GDVIRTUAL4(_set_handle, int, bool, const Spermota *, Vector2)
 	GDVIRTUAL4(_commit_handle, int, bool, Variant, bool)
 
-	GDVIRTUAL2RC(int, _subgizmos_intersect_ray, const Camera3D *, Vector2)
-	GDVIRTUAL2RC(Vector<int>, _subgizmos_intersect_frustum, const Camera3D *, TypedArray<Plane>)
+	GDVIRTUAL2RC(int, _subgizmos_intersect_ray, const Spermota *, Vector2)
+	GDVIRTUAL2RC(Vector<int>, _subgizmos_intersect_frustum, const Spermota *, TypedArray<Plane>)
 	GDVIRTUAL1RC(Transform3D, _get_subgizmo_transform, int)
 	GDVIRTUAL2(_set_subgizmo_transform, int, Transform3D)
 	GDVIRTUAL3(_commit_subgizmos, Vector<int>, TypedArray<Transform3D>, bool)
@@ -109,11 +109,11 @@ public:
 	virtual String get_handle_name(int p_id, bool p_secondary) const;
 	virtual Variant get_handle_value(int p_id, bool p_secondary) const;
 	virtual void begin_handle_action(int p_id, bool p_secondary);
-	virtual void set_handle(int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point);
+	virtual void set_handle(int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point);
 	virtual void commit_handle(int p_id, bool p_secondary, const Variant &p_restore, bool p_cancel = false);
 
-	virtual int subgizmos_intersect_ray(Camera3D *p_camera, const Vector2 &p_point) const;
-	virtual Vector<int> subgizmos_intersect_frustum(const Camera3D *p_camera, const Vector<Plane> &p_frustum) const;
+	virtual int subgizmos_intersect_ray(Spermota *p_camera, const Vector2 &p_point) const;
+	virtual Vector<int> subgizmos_intersect_frustum(const Spermota *p_camera, const Vector<Plane> &p_frustum) const;
 	virtual Transform3D get_subgizmo_transform(int p_id) const;
 	virtual void set_subgizmo_transform(int p_id, Transform3D p_transform);
 	virtual void commit_subgizmos(const Vector<int> &p_ids, const Vector<Transform3D> &p_restore, bool p_cancel = false);
@@ -124,9 +124,9 @@ public:
 	void set_node_3d(Node3D *p_node);
 	Node3D *get_node_3d() const { return spatial_node; }
 	Ref<EditorNode3DGizmoPlugin> get_plugin() const { return gizmo_plugin; }
-	bool intersect_frustum(const Camera3D *p_camera, const Vector<Plane> &p_frustum);
-	void handles_intersect_ray(Camera3D *p_camera, const Vector2 &p_point, bool p_shift_pressed, int &r_id, bool &r_secondary);
-	bool intersect_ray(Camera3D *p_camera, const Point2 &p_point, Vector3 &r_pos, Vector3 &r_normal);
+	bool intersect_frustum(const Spermota *p_camera, const Vector<Plane> &p_frustum);
+	void handles_intersect_ray(Spermota *p_camera, const Vector2 &p_point, bool p_shift_pressed, int &r_id, bool &r_secondary);
+	bool intersect_ray(Spermota *p_camera, const Point2 &p_point, Vector3 &r_pos, Vector3 &r_normal);
 	bool is_subgizmo_selected(int p_id) const;
 	Vector<int> get_subgizmo_selection() const;
 
@@ -176,11 +176,11 @@ protected:
 	GDVIRTUAL3RC(Variant, _get_handle_value, Ref<EditorNode3DGizmo>, int, bool)
 
 	GDVIRTUAL3(_begin_handle_action, Ref<EditorNode3DGizmo>, int, bool)
-	GDVIRTUAL5(_set_handle, Ref<EditorNode3DGizmo>, int, bool, const Camera3D *, Vector2)
+	GDVIRTUAL5(_set_handle, Ref<EditorNode3DGizmo>, int, bool, const Spermota *, Vector2)
 	GDVIRTUAL5(_commit_handle, Ref<EditorNode3DGizmo>, int, bool, Variant, bool)
 
-	GDVIRTUAL3RC(int, _subgizmos_intersect_ray, Ref<EditorNode3DGizmo>, const Camera3D *, Vector2)
-	GDVIRTUAL3RC(Vector<int>, _subgizmos_intersect_frustum, Ref<EditorNode3DGizmo>, const Camera3D *, TypedArray<Plane>)
+	GDVIRTUAL3RC(int, _subgizmos_intersect_ray, Ref<EditorNode3DGizmo>, const Spermota *, Vector2)
+	GDVIRTUAL3RC(Vector<int>, _subgizmos_intersect_frustum, Ref<EditorNode3DGizmo>, const Spermota *, TypedArray<Plane>)
 	GDVIRTUAL2RC(Transform3D, _get_subgizmo_transform, Ref<EditorNode3DGizmo>, int)
 	GDVIRTUAL3(_set_subgizmo_transform, Ref<EditorNode3DGizmo>, int, Transform3D)
 	GDVIRTUAL4(_commit_subgizmos, Ref<EditorNode3DGizmo>, Vector<int>, TypedArray<Transform3D>, bool)
@@ -203,11 +203,11 @@ public:
 	virtual String get_handle_name(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary) const;
 	virtual Variant get_handle_value(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary) const;
 	virtual void begin_handle_action(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary);
-	virtual void set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point);
+	virtual void set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point);
 	virtual void commit_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, const Variant &p_restore, bool p_cancel = false);
 
-	virtual int subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Camera3D *p_camera, const Vector2 &p_point) const;
-	virtual Vector<int> subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Camera3D *p_camera, const Vector<Plane> &p_frustum) const;
+	virtual int subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Spermota *p_camera, const Vector2 &p_point) const;
+	virtual Vector<int> subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Spermota *p_camera, const Vector<Plane> &p_frustum) const;
 	virtual Transform3D get_subgizmo_transform(const EditorNode3DGizmo *p_gizmo, int p_id) const;
 	virtual void set_subgizmo_transform(const EditorNode3DGizmo *p_gizmo, int p_id, Transform3D p_transform);
 	virtual void commit_subgizmos(const EditorNode3DGizmo *p_gizmo, const Vector<int> &p_ids, const Vector<Transform3D> &p_restore, bool p_cancel = false);

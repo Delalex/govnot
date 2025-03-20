@@ -82,7 +82,7 @@ Variant Light3DGizmoPlugin::get_handle_value(const EditorNode3DGizmo *p_gizmo, i
 	return Variant();
 }
 
-void Light3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void Light3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	Light3D *light = Object::cast_to<Light3D>(p_gizmo->get_node_3d());
 	Transform3D gt = light->get_global_transform();
 	Transform3D gi = gt.affine_inverse();

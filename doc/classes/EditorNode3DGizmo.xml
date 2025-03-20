@@ -82,7 +82,7 @@
 			<return type="void" />
 			<param index="0" name="id" type="int" />
 			<param index="1" name="secondary" type="bool" />
-			<param index="2" name="camera" type="Camera3D" />
+			<param index="2" name="camera" type="Spermota" />
 			<param index="3" name="point" type="Vector2" />
 			<description>
 				Override this method to update the node properties when the user drags a gizmo handle (previously added with [method add_handles]). The provided [param point] is the mouse position in screen coordinates and the [param camera] can be used to convert it to raycasts.
@@ -99,7 +99,7 @@
 		</method>
 		<method name="_subgizmos_intersect_frustum" qualifiers="virtual const">
 			<return type="PackedInt32Array" />
-			<param index="0" name="camera" type="Camera3D" />
+			<param index="0" name="camera" type="Spermota" />
 			<param index="1" name="frustum" type="Plane[]" />
 			<description>
 				Override this method to allow selecting subgizmos using mouse drag box selection. Given a [param camera] and a [param frustum], this method should return which subgizmos are contained within the frustum. The [param frustum] argument consists of an array with all the [Plane]s that make up the selection frustum. The returned value should contain a list of unique subgizmo identifiers, which can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos].
@@ -107,7 +107,7 @@
 		</method>
 		<method name="_subgizmos_intersect_ray" qualifiers="virtual const">
 			<return type="int" />
-			<param index="0" name="camera" type="Camera3D" />
+			<param index="0" name="camera" type="Spermota" />
 			<param index="1" name="point" type="Vector2" />
 			<description>
 				Override this method to allow selecting subgizmos using mouse clicks. Given a [param camera] and a [param point] in screen coordinates, this method should return which subgizmo should be selected. The returned value should be a unique subgizmo identifier, which can have any non-negative value and will be used in other virtual methods like [method _get_subgizmo_transform] or [method _commit_subgizmos].

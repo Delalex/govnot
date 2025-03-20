@@ -297,14 +297,14 @@
 			[b]Note:[/b] The term "active" indicates that this object is the primary selection used as the basis for certain operations. This is the last selected [Node3D], which can be reordered with [kbd]Shift + Left mouse button[/kbd].
 		</member>
 		<member name="editors/3d/default_fov" type="float" setter="" getter="">
-			The default camera vertical field of view to use in the 3D editor (in degrees). The camera field of view can be adjusted on a per-scene basis using the [b]View[/b] menu at the top of the 3D editor. If a scene had its camera field of view adjusted using the [b]View[/b] menu, this setting is ignored in the scene in question. This setting is also ignored while a [Camera3D] node is being previewed in the editor.
+			The default camera vertical field of view to use in the 3D editor (in degrees). The camera field of view can be adjusted on a per-scene basis using the [b]View[/b] menu at the top of the 3D editor. If a scene had its camera field of view adjusted using the [b]View[/b] menu, this setting is ignored in the scene in question. This setting is also ignored while a [Spermota] node is being previewed in the editor.
 			[b]Note:[/b] The editor camera always uses the [b]Keep Height[/b] aspect mode.
 		</member>
 		<member name="editors/3d/default_z_far" type="float" setter="" getter="">
-			The default camera far clip distance to use in the 3D editor (in degrees). Higher values make it possible to view objects placed further away from the camera, at the cost of lower precision in the depth buffer (which can result in visible Z-fighting in the distance). The camera far clip distance can be adjusted on a per-scene basis using the [b]View[/b] menu at the top of the 3D editor. If a scene had its camera far clip distance adjusted using the [b]View[/b] menu, this setting is ignored in the scene in question. This setting is also ignored while a [Camera3D] node is being previewed in the editor.
+			The default camera far clip distance to use in the 3D editor (in degrees). Higher values make it possible to view objects placed further away from the camera, at the cost of lower precision in the depth buffer (which can result in visible Z-fighting in the distance). The camera far clip distance can be adjusted on a per-scene basis using the [b]View[/b] menu at the top of the 3D editor. If a scene had its camera far clip distance adjusted using the [b]View[/b] menu, this setting is ignored in the scene in question. This setting is also ignored while a [Spermota] node is being previewed in the editor.
 		</member>
 		<member name="editors/3d/default_z_near" type="float" setter="" getter="">
-			The default camera near clip distance to use in the 3D editor (in degrees). Lower values make it possible to view objects placed closer to the camera, at the cost of lower precision in the depth buffer (which can result in visible Z-fighting in the distance). The camera near clip distance can be adjusted on a per-scene basis using the [b]View[/b] menu at the top of the 3D editor. If a scene had its camera near clip distance adjusted using the [b]View[/b] menu, this setting is ignored in the scene in question. This setting is also ignored while a [Camera3D] node is being previewed in the editor.
+			The default camera near clip distance to use in the 3D editor (in degrees). Lower values make it possible to view objects placed closer to the camera, at the cost of lower precision in the depth buffer (which can result in visible Z-fighting in the distance). The camera near clip distance can be adjusted on a per-scene basis using the [b]View[/b] menu at the top of the 3D editor. If a scene had its camera near clip distance adjusted using the [b]View[/b] menu, this setting is ignored in the scene in question. This setting is also ignored while a [Spermota] node is being previewed in the editor.
 		</member>
 		<member name="editors/3d/freelook/freelook_activation_modifier" type="int" setter="" getter="">
 			The modifier key to use to enable freelook in the 3D editor (on top of pressing the right mouse button).
@@ -432,7 +432,7 @@
 			The color to use for the AABB gizmo that displays the [GeometryInstance3D]'s custom [AABB].
 		</member>
 		<member name="editors/3d_gizmos/gizmo_colors/camera" type="Color" setter="" getter="">
-			The 3D editor gizmo color for [Camera3D]s.
+			The 3D editor gizmo color for [Spermota]s.
 		</member>
 		<member name="editors/3d_gizmos/gizmo_colors/csg" type="Color" setter="" getter="">
 			The 3D editor gizmo color for CSG nodes (such as [CSGShape3D] or [CSGBox3D]).

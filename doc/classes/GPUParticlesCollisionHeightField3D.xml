@@ -31,7 +31,7 @@
 	</methods>
 	<members>
 		<member name="follow_camera_enabled" type="bool" setter="set_follow_camera_enabled" getter="is_follow_camera_enabled" default="false">
-			If [code]true[/code], the [GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node for this to work.
+			If [code]true[/code], the [GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Spermota] node for this to work.
 			Following the camera has a performance cost, as it will force the heightmap to update whenever the camera moves. Consider lowering [member resolution] to improve performance if [member follow_camera_enabled] is [code]true[/code].
 		</member>
 		<member name="heightfield_mask" type="int" setter="set_heightfield_mask" getter="get_heightfield_mask" default="1048575">

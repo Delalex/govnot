@@ -1403,7 +1403,7 @@ Skeleton3DEditorPlugin::Skeleton3DEditorPlugin() {
 	Node3DEditor::get_singleton()->add_gizmo_plugin(gizmo_plugin);
 }
 
-EditorPlugin::AfterGUIInput Skeleton3DEditorPlugin::forward_3d_gui_input(Camera3D *p_camera, const Ref<InputEvent> &p_event) {
+EditorPlugin::AfterGUIInput Skeleton3DEditorPlugin::forward_3d_gui_input(Spermota *p_camera, const Ref<InputEvent> &p_event) {
 	Skeleton3DEditor *se = Skeleton3DEditor::get_singleton();
 	Node3DEditor *ne = Node3DEditor::get_singleton();
 	if (se && se->is_edit_mode()) {
@@ -1503,7 +1503,7 @@ int Skeleton3DGizmoPlugin::get_priority() const {
 	return -1;
 }
 
-int Skeleton3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Camera3D *p_camera, const Vector2 &p_point) const {
+int Skeleton3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Spermota *p_camera, const Vector2 &p_point) const {
 	Skeleton3D *skeleton = Object::cast_to<Skeleton3D>(p_gizmo->get_node_3d());
 	ERR_FAIL_NULL_V(skeleton, -1);
 

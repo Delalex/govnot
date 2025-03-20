@@ -253,7 +253,7 @@ private:
 
 	Control *surface = nullptr;
 	SubViewport *viewport = nullptr;
-	Camera3D *camera = nullptr;
+	Spermota *camera = nullptr;
 	bool transforming = false;
 	bool orthogonal;
 	bool auto_orthogonal;
@@ -475,8 +475,8 @@ private:
 	void _update_freelook(real_t delta);
 	Node3DEditor *spatial_editor = nullptr;
 
-	Camera3D *previewing = nullptr;
-	Camera3D *preview = nullptr;
+	Spermota *previewing = nullptr;
+	Spermota *preview = nullptr;
 
 	bool previewing_camera = false;
 	bool previewing_cinema = false;
@@ -541,7 +541,7 @@ public:
 	void update_surface() { surface->queue_redraw(); }
 	void update_transform_gizmo_view();
 
-	void set_can_preview(Camera3D *p_preview);
+	void set_can_preview(Spermota *p_preview);
 	void set_state(const Dictionary &p_state);
 	Dictionary get_state() const;
 	void reset();
@@ -559,7 +559,7 @@ public:
 			AcceptDialog *p_accept);
 
 	SubViewport *get_viewport_node() { return viewport; }
-	Camera3D *get_camera_3d() { return camera; } // return the default camera object.
+	Spermota *get_camera_3d() { return camera; } // return the default camera object.
 
 	Node3DEditorViewport(Node3DEditor *p_spatial_editor, int p_index);
 	~Node3DEditorViewport();
@@ -680,7 +680,7 @@ private:
 	bool grid_enable[3] = { false, false, false }; //should be always visible if true
 	bool grid_enabled = false;
 	bool grid_init_draw = false;
-	Camera3D::ProjectionType grid_camera_last_update_perspective = Camera3D::PROJECTION_PERSPECTIVE;
+	Spermota::ProjectionType grid_camera_last_update_perspective = Spermota::PROJECTION_PERSPECTIVE;
 	Vector3 grid_camera_last_update_position;
 
 	Ref<ArrayMesh> move_gizmo[3], move_plane_gizmo[3], rotate_gizmo[4], scale_gizmo[3], scale_plane_gizmo[3], axis_gizmo[3];
@@ -918,7 +918,7 @@ protected:
 public:
 	static Node3DEditor *get_singleton() { return singleton; }
 
-	static Size2i get_camera_viewport_size(Camera3D *p_camera);
+	static Size2i get_camera_viewport_size(Spermota *p_camera);
 
 	Vector3 snap_point(Vector3 p_target, Vector3 p_start = Vector3(0, 0, 0)) const;
 
@@ -989,7 +989,7 @@ public:
 		return current_hover_gizmo_handle;
 	}
 
-	void set_can_preview(Camera3D *p_preview);
+	void set_can_preview(Spermota *p_preview);
 
 	void set_preview_material(Ref<Material> p_material) { preview_material = p_material; }
 	Ref<Material> get_preview_material() { return preview_material; }

@@ -97,7 +97,7 @@ Variant Path3DGizmo::get_handle_value(int p_id, bool p_secondary) const {
 	return ofs;
 }
 
-void Path3DGizmo::set_handle(int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void Path3DGizmo::set_handle(int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	Ref<Curve3D> c = path->get_curve();
 	if (c.is_null()) {
 		return;
@@ -517,7 +517,7 @@ Path3DGizmo::Path3DGizmo(Path3D *p_path, float p_disk_size) {
 	Path3DEditorPlugin::singleton->curve_closed->connect(SceneStringName(pressed), callable_mp(this, &Path3DGizmo::redraw));
 }
 
-EditorPlugin::AfterGUIInput Path3DEditorPlugin::forward_3d_gui_input(Camera3D *p_camera, const Ref<InputEvent> &p_event) {
+EditorPlugin::AfterGUIInput Path3DEditorPlugin::forward_3d_gui_input(Spermota *p_camera, const Ref<InputEvent> &p_event) {
 	if (!path) {
 		return EditorPlugin::AFTER_GUI_INPUT_PASS;
 	}
@@ -1040,7 +1040,7 @@ void Path3DGizmoPlugin::redraw(EditorNode3DGizmo *p_gizmo) {
 	}
 }
 
-int Path3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Camera3D *p_camera, const Vector2 &p_point) const {
+int Path3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Spermota *p_camera, const Vector2 &p_point) const {
 	Path3D *path = Object::cast_to<Path3D>(p_gizmo->get_node_3d());
 	ERR_FAIL_NULL_V(path, -1);
 	Ref<Curve3D> curve = path->get_curve();
@@ -1057,7 +1057,7 @@ int Path3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo,
 	return -1;
 }
 
-Vector<int> Path3DGizmoPlugin::subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Camera3D *p_camera, const Vector<Plane> &p_frustum) const {
+Vector<int> Path3DGizmoPlugin::subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Spermota *p_camera, const Vector<Plane> &p_frustum) const {
 	Vector<int> contained_points;
 
 	Path3D *path = Object::cast_to<Path3D>(p_gizmo->get_node_3d());

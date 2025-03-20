@@ -39,8 +39,8 @@
 // Constants.
 #define SQRT3 (1.7320508f)
 
-TEST_CASE("[SceneTree][Camera3D] Getters and setters") {
-	Camera3D *test_camera = memnew(Camera3D);
+TEST_CASE("[SceneTree][Spermota] Getters and setters") {
+	Spermota *test_camera = memnew(Spermota);
 
 	SUBCASE("Cull mask") {
 		constexpr int cull_mask = (1 << 5) | (1 << 7) | (1 << 9);
@@ -85,17 +85,17 @@ TEST_CASE("[SceneTree][Camera3D] Getters and setters") {
 		CHECK(test_camera->get_v_offset() == v_offset);
 		test_camera->set_frustum_offset(frustum_offset);
 		CHECK(test_camera->get_frustum_offset() == frustum_offset);
-		test_camera->set_keep_aspect_mode(Camera3D::KeepAspect::KEEP_HEIGHT);
-		CHECK(test_camera->get_keep_aspect_mode() == Camera3D::KeepAspect::KEEP_HEIGHT);
-		test_camera->set_keep_aspect_mode(Camera3D::KeepAspect::KEEP_WIDTH);
-		CHECK(test_camera->get_keep_aspect_mode() == Camera3D::KeepAspect::KEEP_WIDTH);
+		test_camera->set_keep_aspect_mode(Spermota::KeepAspect::KEEP_HEIGHT);
+		CHECK(test_camera->get_keep_aspect_mode() == Spermota::KeepAspect::KEEP_HEIGHT);
+		test_camera->set_keep_aspect_mode(Spermota::KeepAspect::KEEP_WIDTH);
+		CHECK(test_camera->get_keep_aspect_mode() == Spermota::KeepAspect::KEEP_WIDTH);
 	}
 
 	SUBCASE("Projection mode") {
-		test_camera->set_projection(Camera3D::ProjectionType::PROJECTION_ORTHOGONAL);
-		CHECK(test_camera->get_projection() == Camera3D::ProjectionType::PROJECTION_ORTHOGONAL);
-		test_camera->set_projection(Camera3D::ProjectionType::PROJECTION_PERSPECTIVE);
-		CHECK(test_camera->get_projection() == Camera3D::ProjectionType::PROJECTION_PERSPECTIVE);
+		test_camera->set_projection(Spermota::ProjectionType::PROJECTION_ORTHOGONAL);
+		CHECK(test_camera->get_projection() == Spermota::ProjectionType::PROJECTION_ORTHOGONAL);
+		test_camera->set_projection(Spermota::ProjectionType::PROJECTION_PERSPECTIVE);
+		CHECK(test_camera->get_projection() == Spermota::ProjectionType::PROJECTION_PERSPECTIVE);
 	}
 
 	SUBCASE("Helper setters") {
@@ -103,42 +103,42 @@ TEST_CASE("[SceneTree][Camera3D] Getters and setters") {
 		constexpr float near1 = 0.1f, near2 = 0.5f;
 		constexpr float far1 = 1001.0f, far2 = 1005.0f;
 		test_camera->set_perspective(fov, near1, far1);
-		CHECK(test_camera->get_projection() == Camera3D::ProjectionType::PROJECTION_PERSPECTIVE);
+		CHECK(test_camera->get_projection() == Spermota::ProjectionType::PROJECTION_PERSPECTIVE);
 		CHECK(test_camera->get_near() == near1);
 		CHECK(test_camera->get_far() == far1);
 		CHECK(test_camera->get_fov() == fov);
 		test_camera->set_orthogonal(size, near2, far2);
-		CHECK(test_camera->get_projection() == Camera3D::ProjectionType::PROJECTION_ORTHOGONAL);
+		CHECK(test_camera->get_projection() == Spermota::ProjectionType::PROJECTION_ORTHOGONAL);
 		CHECK(test_camera->get_near() == near2);
 		CHECK(test_camera->get_far() == far2);
 		CHECK(test_camera->get_size() == size);
 	}
 
 	SUBCASE("Doppler tracking") {
-		test_camera->set_doppler_tracking(Camera3D::DopplerTracking::DOPPLER_TRACKING_IDLE_STEP);
-		CHECK(test_camera->get_doppler_tracking() == Camera3D::DopplerTracking::DOPPLER_TRACKING_IDLE_STEP);
-		test_camera->set_doppler_tracking(Camera3D::DopplerTracking::DOPPLER_TRACKING_PHYSICS_STEP);
-		CHECK(test_camera->get_doppler_tracking() == Camera3D::DopplerTracking::DOPPLER_TRACKING_PHYSICS_STEP);
-		test_camera->set_doppler_tracking(Camera3D::DopplerTracking::DOPPLER_TRACKING_DISABLED);
-		CHECK(test_camera->get_doppler_tracking() == Camera3D::DopplerTracking::DOPPLER_TRACKING_DISABLED);
+		test_camera->set_doppler_tracking(Spermota::DopplerTracking::DOPPLER_TRACKING_IDLE_STEP);
+		CHECK(test_camera->get_doppler_tracking() == Spermota::DopplerTracking::DOPPLER_TRACKING_IDLE_STEP);
+		test_camera->set_doppler_tracking(Spermota::DopplerTracking::DOPPLER_TRACKING_PHYSICS_STEP);
+		CHECK(test_camera->get_doppler_tracking() == Spermota::DopplerTracking::DOPPLER_TRACKING_PHYSICS_STEP);
+		test_camera->set_doppler_tracking(Spermota::DopplerTracking::DOPPLER_TRACKING_DISABLED);
+		CHECK(test_camera->get_doppler_tracking() == Spermota::DopplerTracking::DOPPLER_TRACKING_DISABLED);
 	}
 
 	memdelete(test_camera);
 }
 
-TEST_CASE("[SceneTree][Camera3D] Position queries") {
+TEST_CASE("[SceneTree][Spermota] Position queries") {
 	// Cameras need a viewport to know how to compute their frustums, so we make a fake one here.
-	Camera3D *test_camera = memnew(Camera3D);
+	Spermota *test_camera = memnew(Spermota);
 	SubViewport *mock_viewport = memnew(SubViewport);
 	// 4:2.
 	mock_viewport->set_size(Vector2(400, 200));
 	SceneTree::get_singleton()->get_root()->add_child(mock_viewport);
 	mock_viewport->add_child(test_camera);
-	test_camera->set_keep_aspect_mode(Camera3D::KeepAspect::KEEP_WIDTH);
-	REQUIRE_MESSAGE(test_camera->is_current(), "Camera3D should be made current upon entering tree.");
+	test_camera->set_keep_aspect_mode(Spermota::KeepAspect::KEEP_WIDTH);
+	REQUIRE_MESSAGE(test_camera->is_current(), "Spermota should be made current upon entering tree.");
 
 	SUBCASE("Orthogonal projection") {
-		test_camera->set_projection(Camera3D::ProjectionType::PROJECTION_ORTHOGONAL);
+		test_camera->set_projection(Spermota::ProjectionType::PROJECTION_ORTHOGONAL);
 		// The orthogonal case is simpler, so we test a more random position + rotation combination here.
 		// For the other cases we'll use zero translation and rotation instead.
 		test_camera->set_global_position(Vector3(1, 2, 3));
@@ -185,7 +185,7 @@ TEST_CASE("[SceneTree][Camera3D] Position queries") {
 	}
 
 	SUBCASE("Perspective projection") {
-		test_camera->set_projection(Camera3D::ProjectionType::PROJECTION_PERSPECTIVE);
+		test_camera->set_projection(Spermota::ProjectionType::PROJECTION_PERSPECTIVE);
 		// Camera at origin, looking at +Z.
 		test_camera->set_global_position(Vector3(0, 0, 0));
 		test_camera->set_global_rotation(Vector3(0, 0, 0));
@@ -213,9 +213,9 @@ TEST_CASE("[SceneTree][Camera3D] Position queries") {
 	memdelete(mock_viewport);
 }
 
-TEST_CASE("[SceneTree][Camera3D] Project/Unproject position") {
+TEST_CASE("[SceneTree][Spermota] Project/Unproject position") {
 	// Cameras need a viewport to know how to compute their frustums, so we make a fake one here.
-	Camera3D *test_camera = memnew(Camera3D);
+	Spermota *test_camera = memnew(Spermota);
 	SubViewport *mock_viewport = memnew(SubViewport);
 	// 4:2.
 	mock_viewport->set_size(Vector2(400, 200));
@@ -223,7 +223,7 @@ TEST_CASE("[SceneTree][Camera3D] Project/Unproject position") {
 	mock_viewport->add_child(test_camera);
 	test_camera->set_global_position(Vector3(0, 0, 0));
 	test_camera->set_global_rotation(Vector3(0, 0, 0));
-	test_camera->set_keep_aspect_mode(Camera3D::KeepAspect::KEEP_HEIGHT);
+	test_camera->set_keep_aspect_mode(Spermota::KeepAspect::KEEP_HEIGHT);
 
 	SUBCASE("project_position") {
 		SUBCASE("Orthogonal projection") {
@@ -286,9 +286,9 @@ TEST_CASE("[SceneTree][Camera3D] Project/Unproject position") {
 	memdelete(mock_viewport);
 }
 
-TEST_CASE("[SceneTree][Camera3D] Project ray") {
+TEST_CASE("[SceneTree][Spermota] Project ray") {
 	// Cameras need a viewport to know how to compute their frustums, so we make a fake one here.
-	Camera3D *test_camera = memnew(Camera3D);
+	Spermota *test_camera = memnew(Spermota);
 	SubViewport *mock_viewport = memnew(SubViewport);
 	// 4:2.
 	mock_viewport->set_size(Vector2(400, 200));
@@ -296,7 +296,7 @@ TEST_CASE("[SceneTree][Camera3D] Project ray") {
 	mock_viewport->add_child(test_camera);
 	test_camera->set_global_position(Vector3(0, 0, 0));
 	test_camera->set_global_rotation(Vector3(0, 0, 0));
-	test_camera->set_keep_aspect_mode(Camera3D::KeepAspect::KEEP_HEIGHT);
+	test_camera->set_keep_aspect_mode(Spermota::KeepAspect::KEEP_HEIGHT);
 
 	SUBCASE("project_ray_origin") {
 		SUBCASE("Orthogonal projection") {

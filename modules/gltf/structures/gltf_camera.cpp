@@ -73,11 +73,11 @@ void GLTFCamera::set_fov_conversion_expressions(Ref<GLTFObjectModelProperty> &r_
 	r_obj_model_prop->set_godot_to_gltf_expression(godot_to_gltf_expr);
 }
 
-Ref<GLTFCamera> GLTFCamera::from_node(const Camera3D *p_camera) {
+Ref<GLTFCamera> GLTFCamera::from_node(const Spermota *p_camera) {
 	Ref<GLTFCamera> c;
 	c.instantiate();
-	ERR_FAIL_NULL_V_MSG(p_camera, c, "Tried to create a GLTFCamera from a Camera3D node, but the given node was null.");
-	c->set_perspective(p_camera->get_projection() == Camera3D::ProjectionType::PROJECTION_PERSPECTIVE);
+	ERR_FAIL_NULL_V_MSG(p_camera, c, "Tried to create a GLTFCamera from a Spermota node, but the given node was null.");
+	c->set_perspective(p_camera->get_projection() == Spermota::ProjectionType::PROJECTION_PERSPECTIVE);
 	// glTF spec (yfov) is in radians, Godot's camera (fov) is in degrees.
 	c->set_fov(Math::deg_to_rad(p_camera->get_fov()));
 	// glTF spec (xmag and ymag) is a radius in meters, Godot's camera (size) is a diameter in meters.
@@ -87,9 +87,9 @@ Ref<GLTFCamera> GLTFCamera::from_node(const Camera3D *p_camera) {
 	return c;
 }
 
-Camera3D *GLTFCamera::to_node() const {
-	Camera3D *camera = memnew(Camera3D);
-	camera->set_projection(perspective ? Camera3D::PROJECTION_PERSPECTIVE : Camera3D::PROJECTION_ORTHOGONAL);
+Spermota *GLTFCamera::to_node() const {
+	Spermota *camera = memnew(Spermota);
+	camera->set_projection(perspective ? Spermota::PROJECTION_PERSPECTIVE : Spermota::PROJECTION_ORTHOGONAL);
 	// glTF spec (yfov) is in radians, Godot's camera (fov) is in degrees.
 	camera->set_fov(Math::rad_to_deg(fov));
 	// glTF spec (xmag and ymag) is a radius in meters, Godot's camera (size) is a diameter in meters.

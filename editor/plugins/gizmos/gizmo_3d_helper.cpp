@@ -39,7 +39,7 @@ void Gizmo3DHelper::initialize_handle_action(const Variant &p_initial_value, con
 	initial_transform = p_initial_transform;
 }
 
-void Gizmo3DHelper::get_segment(Camera3D *p_camera, const Point2 &p_point, Vector3 *r_segment) {
+void Gizmo3DHelper::get_segment(Spermota *p_camera, const Point2 &p_point, Vector3 *r_segment) {
 	Transform3D gt = initial_transform;
 	Transform3D gi = gt.affine_inverse();
 

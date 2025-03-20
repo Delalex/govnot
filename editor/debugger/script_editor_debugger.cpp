@@ -988,11 +988,11 @@ void ScriptEditorDebugger::_notification(int p_what) {
 					// Node3D Editor
 					{
 						Node3DEditorViewport *viewport = Node3DEditor::get_singleton()->get_last_used_viewport();
-						const Camera3D *cam = viewport->get_camera_3d();
+						const Spermota *cam = viewport->get_camera_3d();
 
 						Array msg;
 						msg.push_back(cam->get_camera_transform());
-						if (cam->get_projection() == Camera3D::PROJECTION_ORTHOGONAL) {
+						if (cam->get_projection() == Spermota::PROJECTION_ORTHOGONAL) {
 							msg.push_back(false);
 							msg.push_back(cam->get_size());
 						} else {

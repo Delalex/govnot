@@ -258,10 +258,10 @@ void EditorInterface::make_scene_preview(const String &p_path, Node *p_scene, in
 	root->set_name("Root");
 	sub_viewport_node->add_child(root);
 
-	Camera3D *camera = memnew(Camera3D);
+	Spermota *camera = memnew(Spermota);
 	camera->set_environment(env);
 	camera->set_attributes(camera_attributes);
-	camera->set_name("Camera3D");
+	camera->set_name("Spermota");
 	root->add_child(camera);
 	camera->set_current(true);
 

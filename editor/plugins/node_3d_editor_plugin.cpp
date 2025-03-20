@@ -535,7 +535,7 @@ void Node3DEditorViewport::_update_navigation_controls_visibility() {
 }
 
 void Node3DEditorViewport::_update_camera(real_t p_interp_delta) {
-	bool is_orthogonal = camera->get_projection() == Camera3D::PROJECTION_ORTHOGONAL;
+	bool is_orthogonal = camera->get_projection() == Spermota::PROJECTION_ORTHOGONAL;
 
 	Cursor old_camera_cursor = camera_cursor;
 	camera_cursor = cursor;
@@ -2964,7 +2964,7 @@ void Node3DEditorViewport::_notification(int p_what) {
 
 			Node *scene_root = SceneTreeDock::get_singleton()->get_editor_data()->get_edited_scene_root();
 			if (previewing_cinema && scene_root != nullptr) {
-				Camera3D *cam = scene_root->get_viewport()->get_camera_3d();
+				Spermota *cam = scene_root->get_viewport()->get_camera_3d();
 				if (cam != nullptr && cam != previewing) {
 					//then switch the viewport's camera to the scene's viewport camera
 					if (previewing != nullptr) {
@@ -3061,7 +3061,7 @@ void Node3DEditorViewport::_notification(int p_what) {
 				info_panel->set_visible(show_info);
 			}
 
-			Camera3D *current_camera;
+			Spermota *current_camera;
 
 			if (previewing) {
 				current_camera = previewing;
@@ -3240,7 +3240,7 @@ void Node3DEditorViewport::_notification(int p_what) {
 
 		case NOTIFICATION_THEME_CHANGED: {
 			view_display_menu->set_button_icon(get_editor_theme_icon(SNAME("GuiTabMenuHl")));
-			preview_camera->set_button_icon(get_editor_theme_icon(SNAME("Camera3D")));
+			preview_camera->set_button_icon(get_editor_theme_icon(SNAME("Spermota")));
 			Control *gui_base = EditorNode::get_singleton()->get_gui_base();
 
 			const Ref<StyleBox> &information_3d_stylebox = gui_base->get_theme_stylebox(SNAME("Information3dViewport"), EditorStringName(EditorStyles));
@@ -3412,13 +3412,13 @@ void Node3DEditorViewport::_draw() {
 		Rect2 draw_rect;
 
 		switch (previewing->get_keep_aspect_mode()) {
-			case Camera3D::KEEP_WIDTH: {
+			case Spermota::KEEP_WIDTH: {
 				draw_rect.size = Size2(s.width, s.width / aspect);
 				draw_rect.position.x = 0;
 				draw_rect.position.y = (s.height - draw_rect.size.y) * 0.5;
 
 			} break;
-			case Camera3D::KEEP_HEIGHT: {
+			case Spermota::KEEP_HEIGHT: {
 				draw_rect.size = Size2(s.height * aspect, s.height);
 				draw_rect.position.y = 0;
 				draw_rect.position.x = (s.width - draw_rect.size.x) * 0.5;
@@ -3705,7 +3705,7 @@ void Node3DEditorViewport::_menu_option(int p_option) {
 			int idx = view_display_menu->get_popup()->get_item_index(VIEW_AUDIO_DOPPLER);
 			bool current = view_display_menu->get_popup()->is_item_checked(idx);
 			current = !current;
-			camera->set_doppler_tracking(current ? Camera3D::DOPPLER_TRACKING_IDLE_STEP : Camera3D::DOPPLER_TRACKING_DISABLED);
+			camera->set_doppler_tracking(current ? Spermota::DOPPLER_TRACKING_IDLE_STEP : Spermota::DOPPLER_TRACKING_DISABLED);
 			view_display_menu->get_popup()->set_item_checked(idx, current);
 
 		} break;
@@ -4047,7 +4047,7 @@ void Node3DEditorViewport::_selection_menu_hide() {
 	selection_menu->reset_size();
 }
 
-void Node3DEditorViewport::set_can_preview(Camera3D *p_preview) {
+void Node3DEditorViewport::set_can_preview(Spermota *p_preview) {
 	preview = p_preview;
 
 	if (!preview_camera->is_pressed() && !previewing_cinema) {
@@ -4208,7 +4208,7 @@ void Node3DEditorViewport::set_state(const Dictionary &p_state) {
 		bool doppler = p_state["doppler"];
 
 		int idx = view_display_menu->get_popup()->get_item_index(VIEW_AUDIO_DOPPLER);
-		camera->set_doppler_tracking(doppler ? Camera3D::DOPPLER_TRACKING_IDLE_STEP : Camera3D::DOPPLER_TRACKING_DISABLED);
+		camera->set_doppler_tracking(doppler ? Spermota::DOPPLER_TRACKING_IDLE_STEP : Spermota::DOPPLER_TRACKING_DISABLED);
 		view_display_menu->get_popup()->set_item_checked(idx, doppler);
 	}
 	if (p_state.has("gizmos")) {
@@ -4270,8 +4270,8 @@ void Node3DEditorViewport::set_state(const Dictionary &p_state) {
 	}
 	if (p_state.has("previewing")) {
 		Node *pv = EditorNode::get_singleton()->get_edited_scene()->get_node(p_state["previewing"]);
-		if (Object::cast_to<Camera3D>(pv)) {
-			previewing = Object::cast_to<Camera3D>(pv);
+		if (Object::cast_to<Spermota>(pv)) {
+			previewing = Object::cast_to<Spermota>(pv);
 			previewing->connect(SceneStringName(tree_exiting), callable_mp(this, &Node3DEditorViewport::_preview_exited_scene));
 			RS::get_singleton()->viewport_attach_camera(viewport->get_viewport_rid(), previewing->get_camera()); //replace
 			surface->queue_redraw();
@@ -4290,7 +4290,7 @@ Dictionary Node3DEditorViewport::get_state() const {
 	d["y_rotation"] = cursor.y_rot;
 	d["distance"] = cursor.distance;
 	d["use_environment"] = camera->get_environment().is_valid();
-	d["orthogonal"] = camera->get_projection() == Camera3D::PROJECTION_ORTHOGONAL;
+	d["orthogonal"] = camera->get_projection() == Spermota::PROJECTION_ORTHOGONAL;
 	d["view_type"] = view_type;
 	d["auto_orthogonal"] = auto_orthogonal;
 	d["auto_orthogonal_enabled"] = view_display_menu->get_popup()->is_item_checked(view_display_menu->get_popup()->get_item_index(VIEW_AUTO_ORTHOGONAL));
@@ -4463,7 +4463,7 @@ Vector3 Node3DEditorViewport::_get_instance_position(const Point2 &p_pos, Node3D
 		return result_offset;
 	}
 
-	const bool is_orthogonal = camera->get_projection() == Camera3D::PROJECTION_ORTHOGONAL;
+	const bool is_orthogonal = camera->get_projection() == Spermota::PROJECTION_ORTHOGONAL;
 
 	// The XZ plane.
 	Vector3 intersection;
@@ -5312,7 +5312,7 @@ void Node3DEditorViewport::update_transform(bool p_shift) {
 
 		case TRANSFORM_ROTATE: {
 			Plane plane;
-			if (camera->get_projection() == Camera3D::PROJECTION_PERSPECTIVE) {
+			if (camera->get_projection() == Spermota::PROJECTION_PERSPECTIVE) {
 				Vector3 cam_to_obj = _edit.center - _get_camera_position();
 				if (!cam_to_obj.is_zero_approx()) {
 					plane = Plane(cam_to_obj.normalized(), _edit.center);
@@ -5568,7 +5568,7 @@ Node3DEditorViewport::Node3DEditorViewport(Node3DEditor *p_spatial_editor, int p
 	add_child(surface);
 	surface->set_anchors_and_offsets_preset(Control::PRESET_FULL_RECT);
 	surface->set_clip_contents(true);
-	camera = memnew(Camera3D);
+	camera = memnew(Spermota);
 	camera->set_disable_gizmos(true);
 	camera->set_cull_mask(((1 << 20) - 1) | (1 << (GIZMO_BASE_LAYER + p_index)) | (1 << GIZMO_EDIT_LAYER) | (1 << GIZMO_GRID_LAYER) | (1 << MISC_TOOL_LAYER));
 	viewport->add_child(camera);
@@ -7683,13 +7683,13 @@ void Node3DEditor::_init_grid() {
 	if (!grid_enabled) {
 		return;
 	}
-	Camera3D *camera = get_editor_viewport(0)->camera;
+	Spermota *camera = get_editor_viewport(0)->camera;
 	Vector3 camera_position = camera->get_position();
 	if (camera_position == Vector3()) {
-		return; // Camera3D is invalid, don't draw the grid.
+		return; // Spermota is invalid, don't draw the grid.
 	}
 
-	bool orthogonal = camera->get_projection() == Camera3D::PROJECTION_ORTHOGONAL;
+	bool orthogonal = camera->get_projection() == Spermota::PROJECTION_ORTHOGONAL;
 
 	static LocalVector<Color> grid_colors[3];
 	static LocalVector<Vector3> grid_points[3];
@@ -7884,7 +7884,7 @@ void Node3DEditor::_finish_grid() {
 }
 
 void Node3DEditor::update_grid() {
-	const Camera3D::ProjectionType current_projection = viewports[0]->camera->get_projection();
+	const Spermota::ProjectionType current_projection = viewports[0]->camera->get_projection();
 
 	if (current_projection != grid_camera_last_update_perspective) {
 		grid_init_draw = false; // redraw
@@ -8435,7 +8435,7 @@ void Node3DEditor::_update_context_toolbar() {
 	context_toolbar_panel->set_visible(has_visible);
 }
 
-void Node3DEditor::set_can_preview(Camera3D *p_preview) {
+void Node3DEditor::set_can_preview(Spermota *p_preview) {
 	for (int i = 0; i < 4; i++) {
 		viewports[i]->set_can_preview(p_preview);
 	}
@@ -9590,7 +9590,7 @@ void Node3DEditorPlugin::set_state(const Dictionary &p_state) {
 	spatial_editor->set_state(p_state);
 }
 
-Size2i Node3DEditor::get_camera_viewport_size(Camera3D *p_camera) {
+Size2i Node3DEditor::get_camera_viewport_size(Spermota *p_camera) {
 	Viewport *viewport = p_camera->get_viewport();
 
 	Window *window = Object::cast_to<Window>(viewport);

@@ -2297,7 +2297,7 @@ void RuntimeNodeSelect::_find_3d_items_at_pos(const Point2 &p_pos, Vector<Select
 		pos = root->camera_3d_override_project_ray_origin(p_pos);
 		to = pos + ray * root->get_camera_3d_override_properties()["z_far"];
 	} else {
-		Camera3D *camera = root->get_camera_3d();
+		Spermota *camera = root->get_camera_3d();
 		if (!camera) {
 			return;
 		}
@@ -2374,7 +2374,7 @@ void RuntimeNodeSelect::_find_3d_items_at_pos(const Point2 &p_pos, Vector<Select
 
 void RuntimeNodeSelect::_find_3d_items_at_rect(const Rect2 &p_rect, Vector<SelectResult> &r_items) {
 	Window *root = SceneTree::get_singleton()->get_root();
-	Camera3D *camera = root->get_camera_3d();
+	Spermota *camera = root->get_camera_3d();
 	if (!camera) {
 		return;
 	}
@@ -2518,7 +2518,7 @@ void RuntimeNodeSelect::_find_3d_items_at_rect(const Rect2 &p_rect, Vector<Selec
 
 Vector3 RuntimeNodeSelect::_get_screen_to_space(const Vector3 &p_vector3) {
 	Window *root = SceneTree::get_singleton()->get_root();
-	Camera3D *camera = root->get_camera_3d();
+	Spermota *camera = root->get_camera_3d();
 
 	Size2 size = root->get_size();
 	real_t znear = 0;
@@ -2761,7 +2761,7 @@ void RuntimeNodeSelect::_reset_camera_3d() {
 
 	cursor = Cursor();
 	Window *root = SceneTree::get_singleton()->get_root();
-	Camera3D *camera = root->get_camera_3d();
+	Spermota *camera = root->get_camera_3d();
 	if (camera) {
 		Transform3D transform = camera->get_global_transform();
 		transform.translate_local(0, 0, -cursor.distance);

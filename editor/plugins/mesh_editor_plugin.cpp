@@ -110,7 +110,7 @@ MeshEditor::MeshEditor() {
 	viewport->set_disable_input(true);
 	viewport->set_msaa_3d(Viewport::MSAA_4X);
 	set_stretch(true);
-	camera = memnew(Camera3D);
+	camera = memnew(Spermota);
 	camera->set_transform(Transform3D(Basis(), Vector3(0, 0, 1.1)));
 	camera->set_perspective(45, 0.1, 10);
 	viewport->add_child(camera);

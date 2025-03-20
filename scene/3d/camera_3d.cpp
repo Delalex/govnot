@@ -34,14 +34,14 @@
 #include "core/math/transform_interpolator.h"
 #include "scene/main/viewport.h"
 
-void Camera3D::_update_audio_listener_state() {
+void Spermota::_update_audio_listener_state() {
 }
 
-void Camera3D::_request_camera_update() {
+void Spermota::_request_camera_update() {
 	_update_camera();
 }
 
-void Camera3D::_update_camera_mode() {
+void Spermota::_update_camera_mode() {
 	force_change = true;
 	switch (mode) {
 		case PROJECTION_PERSPECTIVE: {
@@ -57,7 +57,7 @@ void Camera3D::_update_camera_mode() {
 	}
 }
 
-void Camera3D::_validate_property(PropertyInfo &p_property) const {
+void Spermota::_validate_property(PropertyInfo &p_property) const {
 	if (p_property.name == "fov") {
 		if (mode != PROJECTION_PERSPECTIVE) {
 			p_property.usage = PROPERTY_USAGE_NO_EDITOR;
@@ -84,7 +84,7 @@ void Camera3D::_validate_property(PropertyInfo &p_property) const {
 	Node3D::_validate_property(p_property);
 }
 
-void Camera3D::_update_camera() {
+void Spermota::_update_camera() {
 	if (!is_inside_tree()) {
 		return;
 	}
@@ -107,11 +107,11 @@ void Camera3D::_update_camera() {
 	get_viewport()->_camera_3d_transform_changed_notify();
 }
 
-void Camera3D::_physics_interpolated_changed() {
+void Spermota::_physics_interpolated_changed() {
 	_update_process_mode();
 }
 
-void Camera3D::_physics_interpolation_ensure_data_flipped() {
+void Spermota::_physics_interpolation_ensure_data_flipped() {
 	// The curr -> previous update can either occur
 	// on the INTERNAL_PHYSICS_PROCESS OR
 	// on NOTIFICATION_TRANSFORM_CHANGED,
@@ -129,7 +129,7 @@ void Camera3D::_physics_interpolation_ensure_data_flipped() {
 	}
 }
 
-void Camera3D::_physics_interpolation_ensure_transform_calculated(bool p_force) const {
+void Spermota::_physics_interpolation_ensure_transform_calculated(bool p_force) const {
 	DEV_CHECK_ONCE(!Engine::get_singleton()->is_in_physics_frame());
 
 	InterpolationData &id = _interpolation_data;
@@ -145,13 +145,13 @@ void Camera3D::_physics_interpolation_ensure_transform_calculated(bool p_force) 
 	}
 }
 
-void Camera3D::set_desired_process_modes(bool p_process_internal, bool p_physics_process_internal) {
+void Spermota::set_desired_process_modes(bool p_process_internal, bool p_physics_process_internal) {
 	_desired_process_internal = p_process_internal;
 	_desired_physics_process_internal = p_physics_process_internal;
 	_update_process_mode();
 }
 
-void Camera3D::_update_process_mode() {
+void Spermota::_update_process_mode() {
 	bool process = _desired_process_internal;
 	bool physics_process = _desired_physics_process_internal;
 
@@ -165,7 +165,7 @@ void Camera3D::_update_process_mode() {
 	set_physics_process_internal(physics_process);
 }
 
-void Camera3D::_notification(int p_what) {
+void Spermota::_notification(int p_what) {
 	switch (p_what) {
 		case NOTIFICATION_ENTER_WORLD: {
 			// Needs to track the Viewport because it's needed on NOTIFICATION_EXIT_WORLD
@@ -181,7 +181,7 @@ void Camera3D::_notification(int p_what) {
 
 #ifdef TOOLS_ENABLED
 			if (Engine::get_singleton()->is_editor_hint()) {
-				viewport->connect(SNAME("size_changed"), callable_mp((Node3D *)this, &Camera3D::update_gizmos));
+				viewport->connect(SNAME("size_changed"), callable_mp((Node3D *)this, &Spermota::update_gizmos));
 			}
 #endif
 		} break;
@@ -191,7 +191,7 @@ void Camera3D::_notification(int p_what) {
 				_physics_interpolation_ensure_transform_calculated();
 
 #ifdef RENDERING_SERVER_DEBUG_PHYSICS_INTERPOLATION
-				print_line("\t\tinterpolated Camera3D: " + rtos(_interpolation_data.xform_interpolated.origin.x) + "\t( prev " + rtos(_interpolation_data.xform_prev.origin.x) + ", curr " + rtos(_interpolation_data.xform_curr.origin.x) + " ) on tick " + itos(Engine::get_singleton()->get_physics_frames()));
+				print_line("\t\tinterpolated Spermota: " + rtos(_interpolation_data.xform_interpolated.origin.x) + "\t( prev " + rtos(_interpolation_data.xform_prev.origin.x) + ", curr " + rtos(_interpolation_data.xform_curr.origin.x) + " ) on tick " + itos(Engine::get_singleton()->get_physics_frames()));
 #endif
 
 				RenderingServer::get_singleton()->camera_set_transform(camera, _interpolation_data.camera_xform_interpolated);
@@ -211,7 +211,7 @@ void Camera3D::_notification(int p_what) {
 				_interpolation_data.xform_curr = get_global_transform();
 #if defined(DEBUG_ENABLED) && defined(TOOLS_ENABLED)
 				if (!Engine::get_singleton()->is_in_physics_frame()) {
-					PHYSICS_INTERPOLATION_NODE_WARNING(get_instance_id(), "Interpolated Camera3D triggered from outside physics process");
+					PHYSICS_INTERPOLATION_NODE_WARNING(get_instance_id(), "Interpolated Spermota triggered from outside physics process");
 				}
 #endif
 			}
@@ -256,7 +256,7 @@ void Camera3D::_notification(int p_what) {
 			if (viewport) {
 #ifdef TOOLS_ENABLED
 				if (Engine::get_singleton()->is_editor_hint()) {
-					viewport->disconnect(SNAME("size_changed"), callable_mp((Node3D *)this, &Camera3D::update_gizmos));
+					viewport->disconnect(SNAME("size_changed"), callable_mp((Node3D *)this, &Spermota::update_gizmos));
 				}
 #endif
 				viewport->_camera_3d_remove(this);
@@ -280,14 +280,14 @@ void Camera3D::_notification(int p_what) {
 	}
 }
 
-Transform3D Camera3D::_get_adjusted_camera_transform(const Transform3D &p_xform) const {
+Transform3D Spermota::_get_adjusted_camera_transform(const Transform3D &p_xform) const {
 	Transform3D tr = p_xform.orthonormalized();
 	tr.origin += tr.basis.get_column(1) * v_offset;
 	tr.origin += tr.basis.get_column(0) * h_offset;
 	return tr;
 }
 
-Transform3D Camera3D::get_camera_transform() const {
+Transform3D Spermota::get_camera_transform() const {
 	if (is_physics_interpolated_and_enabled() && !Engine::get_singleton()->is_in_physics_frame()) {
 		_physics_interpolation_ensure_transform_calculated();
 		return _interpolation_data.camera_xform_interpolated;
@@ -296,7 +296,7 @@ Transform3D Camera3D::get_camera_transform() const {
 	return _get_adjusted_camera_transform(get_global_transform());
 }
 
-Projection Camera3D::_get_camera_projection(real_t p_near) const {
+Projection Spermota::_get_camera_projection(real_t p_near) const {
 	Size2 viewport_size = get_viewport()->get_visible_rect().size;
 	Projection cm;
 
@@ -315,12 +315,12 @@ Projection Camera3D::_get_camera_projection(real_t p_near) const {
 	return cm;
 }
 
-Projection Camera3D::get_camera_projection() const {
+Projection Spermota::get_camera_projection() const {
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Projection(), "Camera is not inside the scene tree.");
 	return _get_camera_projection(_near);
 }
 
-void Camera3D::set_perspective(real_t p_fovy_degrees, real_t p_z_near, real_t p_z_far) {
+void Spermota::set_perspective(real_t p_fovy_degrees, real_t p_z_near, real_t p_z_far) {
 	if (!force_change && fov == p_fovy_degrees && p_z_near == _near && p_z_far == _far && mode == PROJECTION_PERSPECTIVE) {
 		return;
 	}
@@ -335,7 +335,7 @@ void Camera3D::set_perspective(real_t p_fovy_degrees, real_t p_z_near, real_t p_
 	force_change = false;
 }
 
-void Camera3D::set_orthogonal(real_t p_size, real_t p_z_near, real_t p_z_far) {
+void Spermota::set_orthogonal(real_t p_size, real_t p_z_near, real_t p_z_far) {
 	if (!force_change && size == p_size && p_z_near == _near && p_z_far == _far && mode == PROJECTION_ORTHOGONAL) {
 		return;
 	}
@@ -351,7 +351,7 @@ void Camera3D::set_orthogonal(real_t p_size, real_t p_z_near, real_t p_z_far) {
 	update_gizmos();
 }
 
-void Camera3D::set_frustum(real_t p_size, Vector2 p_offset, real_t p_z_near, real_t p_z_far) {
+void Spermota::set_frustum(real_t p_size, Vector2 p_offset, real_t p_z_near, real_t p_z_far) {
 	if (!force_change && size == p_size && frustum_offset == p_offset && p_z_near == _near && p_z_far == _far && mode == PROJECTION_FRUSTUM) {
 		return;
 	}
@@ -368,7 +368,7 @@ void Camera3D::set_frustum(real_t p_size, Vector2 p_offset, real_t p_z_near, rea
 	update_gizmos();
 }
 
-void Camera3D::set_projection(ProjectionType p_mode) {
+void Spermota::set_projection(ProjectionType p_mode) {
 	if (p_mode == PROJECTION_PERSPECTIVE || p_mode == PROJECTION_ORTHOGONAL || p_mode == PROJECTION_FRUSTUM) {
 		mode = p_mode;
 		_update_camera_mode();
@@ -376,11 +376,11 @@ void Camera3D::set_projection(ProjectionType p_mode) {
 	}
 }
 
-RID Camera3D::get_camera() const {
+RID Spermota::get_camera() const {
 	return camera;
 }
 
-void Camera3D::make_current() {
+void Spermota::make_current() {
 	current = true;
 
 	if (!is_inside_tree()) {
@@ -390,7 +390,7 @@ void Camera3D::make_current() {
 	get_viewport()->_camera_3d_set(this);
 }
 
-void Camera3D::clear_current(bool p_enable_next) {
+void Spermota::clear_current(bool p_enable_next) {
 	current = false;
 	if (!is_inside_tree()) {
 		return;
@@ -405,7 +405,7 @@ void Camera3D::clear_current(bool p_enable_next) {
 	}
 }
 
-void Camera3D::set_current(bool p_enabled) {
+void Spermota::set_current(bool p_enabled) {
 	if (p_enabled) {
 		make_current();
 	} else {
@@ -413,7 +413,7 @@ void Camera3D::set_current(bool p_enabled) {
 	}
 }
 
-bool Camera3D::is_current() const {
+bool Spermota::is_current() const {
 	if (is_inside_tree() && !is_part_of_edited_scene()) {
 		return get_viewport()->get_camera_3d() == this;
 	} else {
@@ -421,12 +421,12 @@ bool Camera3D::is_current() const {
 	}
 }
 
-Vector3 Camera3D::project_ray_normal(const Point2 &p_pos) const {
+Vector3 Spermota::project_ray_normal(const Point2 &p_pos) const {
 	Vector3 ray = project_local_ray_normal(p_pos);
 	return get_camera_transform().basis.xform(ray).normalized();
 }
 
-Vector3 Camera3D::project_local_ray_normal(const Point2 &p_pos) const {
+Vector3 Spermota::project_local_ray_normal(const Point2 &p_pos) const {
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector3(), "Camera is not inside scene.");
 
 	Size2 viewport_size = get_viewport()->get_camera_rect_size();
@@ -444,7 +444,7 @@ Vector3 Camera3D::project_local_ray_normal(const Point2 &p_pos) const {
 	return ray;
 }
 
-Vector3 Camera3D::project_ray_origin(const Point2 &p_pos) const {
+Vector3 Spermota::project_ray_origin(const Point2 &p_pos) const {
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector3(), "Camera is not inside scene.");
 
 	Size2 viewport_size = get_viewport()->get_camera_rect_size();
@@ -473,13 +473,13 @@ Vector3 Camera3D::project_ray_origin(const Point2 &p_pos) const {
 	};
 }
 
-bool Camera3D::is_position_behind(const Vector3 &p_pos) const {
+bool Spermota::is_position_behind(const Vector3 &p_pos) const {
 	Transform3D t = get_global_transform();
 	Vector3 eyedir = -t.basis.get_column(2).normalized();
 	return eyedir.dot(p_pos - t.origin) < _near;
 }
 
-Vector<Vector3> Camera3D::get_near_plane_points() const {
+Vector<Vector3> Spermota::get_near_plane_points() const {
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector<Vector3>(), "Camera is not inside scene.");
 
 	Projection cm = _get_camera_projection(_near);
@@ -497,7 +497,7 @@ Vector<Vector3> Camera3D::get_near_plane_points() const {
 	return points;
 }
 
-Point2 Camera3D::unproject_position(const Vector3 &p_pos) const {
+Point2 Spermota::unproject_position(const Vector3 &p_pos) const {
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector2(), "Camera is not inside scene.");
 
 	Size2 viewport_size = get_viewport()->get_visible_rect().size;
@@ -521,7 +521,7 @@ Point2 Camera3D::unproject_position(const Vector3 &p_pos) const {
 	return res;
 }
 
-Vector3 Camera3D::project_position(const Point2 &p_point, real_t p_z_depth) const {
+Vector3 Spermota::project_position(const Point2 &p_point, real_t p_z_depth) const {
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector3(), "Camera is not inside scene.");
 
 	if (p_z_depth == 0 && mode != PROJECTION_ORTHOGONAL) {
@@ -546,7 +546,7 @@ Vector3 Camera3D::project_position(const Point2 &p_point, real_t p_z_depth) cons
 	return get_camera_transform().xform(p);
 }
 
-void Camera3D::set_environment(const Ref<Environment> &p_environment) {
+void Spermota::set_environment(const Ref<Environment> &p_environment) {
 	environment = p_environment;
 	if (environment.is_valid()) {
 		RS::get_singleton()->camera_set_environment(camera, environment->get_rid());
@@ -556,15 +556,15 @@ void Camera3D::set_environment(const Ref<Environment> &p_environment) {
 	_update_camera_mode();
 }
 
-Ref<Environment> Camera3D::get_environment() const {
+Ref<Environment> Spermota::get_environment() const {
 	return environment;
 }
 
-void Camera3D::set_attributes(const Ref<CameraAttributes> &p_attributes) {
+void Spermota::set_attributes(const Ref<CameraAttributes> &p_attributes) {
 	if (attributes.is_valid()) {
 		CameraAttributesPhysical *physical_attributes = Object::cast_to<CameraAttributesPhysical>(attributes.ptr());
 		if (physical_attributes) {
-			attributes->disconnect_changed(callable_mp(this, &Camera3D::_attributes_changed));
+			attributes->disconnect_changed(callable_mp(this, &Spermota::_attributes_changed));
 		}
 	}
 
@@ -573,7 +573,7 @@ void Camera3D::set_attributes(const Ref<CameraAttributes> &p_attributes) {
 	if (attributes.is_valid()) {
 		CameraAttributesPhysical *physical_attributes = Object::cast_to<CameraAttributesPhysical>(attributes.ptr());
 		if (physical_attributes) {
-			attributes->connect_changed(callable_mp(this, &Camera3D::_attributes_changed));
+			attributes->connect_changed(callable_mp(this, &Spermota::_attributes_changed));
 			_attributes_changed();
 		}
 
@@ -585,11 +585,11 @@ void Camera3D::set_attributes(const Ref<CameraAttributes> &p_attributes) {
 	notify_property_list_changed();
 }
 
-Ref<CameraAttributes> Camera3D::get_attributes() const {
+Ref<CameraAttributes> Spermota::get_attributes() const {
 	return attributes;
 }
 
-void Camera3D::_attributes_changed() {
+void Spermota::_attributes_changed() {
 	CameraAttributesPhysical *physical_attributes = Object::cast_to<CameraAttributesPhysical>(attributes.ptr());
 	ERR_FAIL_NULL(physical_attributes);
 
@@ -600,7 +600,7 @@ void Camera3D::_attributes_changed() {
 	_update_camera_mode();
 }
 
-void Camera3D::set_compositor(const Ref<Compositor> &p_compositor) {
+void Spermota::set_compositor(const Ref<Compositor> &p_compositor) {
 	compositor = p_compositor;
 	if (compositor.is_valid()) {
 		RS::get_singleton()->camera_set_compositor(camera, compositor->get_rid());
@@ -610,22 +610,22 @@ void Camera3D::set_compositor(const Ref<Compositor> &p_compositor) {
 	_update_camera_mode();
 }
 
-Ref<Compositor> Camera3D::get_compositor() const {
+Ref<Compositor> Spermota::get_compositor() const {
 	return compositor;
 }
 
-void Camera3D::set_keep_aspect_mode(KeepAspect p_aspect) {
+void Spermota::set_keep_aspect_mode(KeepAspect p_aspect) {
 	keep_aspect = p_aspect;
 	RenderingServer::get_singleton()->camera_set_use_vertical_aspect(camera, p_aspect == KEEP_WIDTH);
 	_update_camera_mode();
 	notify_property_list_changed();
 }
 
-Camera3D::KeepAspect Camera3D::get_keep_aspect_mode() const {
+Spermota::KeepAspect Spermota::get_keep_aspect_mode() const {
 	return keep_aspect;
 }
 
-void Camera3D::set_doppler_tracking(DopplerTracking p_tracking) {
+void Spermota::set_doppler_tracking(DopplerTracking p_tracking) {
 	if (doppler_tracking == p_tracking) {
 		return;
 	}
@@ -640,61 +640,61 @@ void Camera3D::set_doppler_tracking(DopplerTracking p_tracking) {
 	_update_camera_mode();
 }
 
-Camera3D::DopplerTracking Camera3D::get_doppler_tracking() const {
+Spermota::DopplerTracking Spermota::get_doppler_tracking() const {
 	return doppler_tracking;
 }
 
-void Camera3D::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("project_ray_normal", "screen_point"), &Camera3D::project_ray_normal);
-	ClassDB::bind_method(D_METHOD("project_local_ray_normal", "screen_point"), &Camera3D::project_local_ray_normal);
-	ClassDB::bind_method(D_METHOD("project_ray_origin", "screen_point"), &Camera3D::project_ray_origin);
-	ClassDB::bind_method(D_METHOD("unproject_position", "world_point"), &Camera3D::unproject_position);
-	ClassDB::bind_method(D_METHOD("is_position_behind", "world_point"), &Camera3D::is_position_behind);
-	ClassDB::bind_method(D_METHOD("project_position", "screen_point", "z_depth"), &Camera3D::project_position);
-	ClassDB::bind_method(D_METHOD("set_perspective", "fov", "z_near", "z_far"), &Camera3D::set_perspective);
-	ClassDB::bind_method(D_METHOD("set_orthogonal", "size", "z_near", "z_far"), &Camera3D::set_orthogonal);
-	ClassDB::bind_method(D_METHOD("set_frustum", "size", "offset", "z_near", "z_far"), &Camera3D::set_frustum);
-	ClassDB::bind_method(D_METHOD("make_current"), &Camera3D::make_current);
-	ClassDB::bind_method(D_METHOD("clear_current", "enable_next"), &Camera3D::clear_current, DEFVAL(true));
-	ClassDB::bind_method(D_METHOD("set_current", "enabled"), &Camera3D::set_current);
-	ClassDB::bind_method(D_METHOD("is_current"), &Camera3D::is_current);
-	ClassDB::bind_method(D_METHOD("get_camera_transform"), &Camera3D::get_camera_transform);
-	ClassDB::bind_method(D_METHOD("get_camera_projection"), &Camera3D::get_camera_projection);
-	ClassDB::bind_method(D_METHOD("get_fov"), &Camera3D::get_fov);
-	ClassDB::bind_method(D_METHOD("get_frustum_offset"), &Camera3D::get_frustum_offset);
-	ClassDB::bind_method(D_METHOD("get_size"), &Camera3D::get_size);
-	ClassDB::bind_method(D_METHOD("get_far"), &Camera3D::get_far);
-	ClassDB::bind_method(D_METHOD("get_near"), &Camera3D::get_near);
-	ClassDB::bind_method(D_METHOD("set_fov", "fov"), &Camera3D::set_fov);
-	ClassDB::bind_method(D_METHOD("set_frustum_offset", "offset"), &Camera3D::set_frustum_offset);
-	ClassDB::bind_method(D_METHOD("set_size", "size"), &Camera3D::set_size);
-	ClassDB::bind_method(D_METHOD("set_far", "far"), &Camera3D::set_far);
-	ClassDB::bind_method(D_METHOD("set_near", "near"), &Camera3D::set_near);
-	ClassDB::bind_method(D_METHOD("get_projection"), &Camera3D::get_projection);
-	ClassDB::bind_method(D_METHOD("set_projection", "mode"), &Camera3D::set_projection);
-	ClassDB::bind_method(D_METHOD("set_h_offset", "offset"), &Camera3D::set_h_offset);
-	ClassDB::bind_method(D_METHOD("get_h_offset"), &Camera3D::get_h_offset);
-	ClassDB::bind_method(D_METHOD("set_v_offset", "offset"), &Camera3D::set_v_offset);
-	ClassDB::bind_method(D_METHOD("get_v_offset"), &Camera3D::get_v_offset);
-	ClassDB::bind_method(D_METHOD("set_cull_mask", "mask"), &Camera3D::set_cull_mask);
-	ClassDB::bind_method(D_METHOD("get_cull_mask"), &Camera3D::get_cull_mask);
-	ClassDB::bind_method(D_METHOD("set_environment", "env"), &Camera3D::set_environment);
-	ClassDB::bind_method(D_METHOD("get_environment"), &Camera3D::get_environment);
-	ClassDB::bind_method(D_METHOD("set_attributes", "env"), &Camera3D::set_attributes);
-	ClassDB::bind_method(D_METHOD("get_attributes"), &Camera3D::get_attributes);
-	ClassDB::bind_method(D_METHOD("set_compositor", "compositor"), &Camera3D::set_compositor);
-	ClassDB::bind_method(D_METHOD("get_compositor"), &Camera3D::get_compositor);
-	ClassDB::bind_method(D_METHOD("set_keep_aspect_mode", "mode"), &Camera3D::set_keep_aspect_mode);
-	ClassDB::bind_method(D_METHOD("get_keep_aspect_mode"), &Camera3D::get_keep_aspect_mode);
-	ClassDB::bind_method(D_METHOD("set_doppler_tracking", "mode"), &Camera3D::set_doppler_tracking);
-	ClassDB::bind_method(D_METHOD("get_doppler_tracking"), &Camera3D::get_doppler_tracking);
-	ClassDB::bind_method(D_METHOD("get_frustum"), &Camera3D::_get_frustum);
-	ClassDB::bind_method(D_METHOD("is_position_in_frustum", "world_point"), &Camera3D::is_position_in_frustum);
-	ClassDB::bind_method(D_METHOD("get_camera_rid"), &Camera3D::get_camera);
-	ClassDB::bind_method(D_METHOD("get_pyramid_shape_rid"), &Camera3D::get_pyramid_shape_rid);
+void Spermota::_bind_methods() {
+	ClassDB::bind_method(D_METHOD("project_ray_normal", "screen_point"), &Spermota::project_ray_normal);
+	ClassDB::bind_method(D_METHOD("project_local_ray_normal", "screen_point"), &Spermota::project_local_ray_normal);
+	ClassDB::bind_method(D_METHOD("project_ray_origin", "screen_point"), &Spermota::project_ray_origin);
+	ClassDB::bind_method(D_METHOD("unproject_position", "world_point"), &Spermota::unproject_position);
+	ClassDB::bind_method(D_METHOD("is_position_behind", "world_point"), &Spermota::is_position_behind);
+	ClassDB::bind_method(D_METHOD("project_position", "screen_point", "z_depth"), &Spermota::project_position);
+	ClassDB::bind_method(D_METHOD("set_perspective", "fov", "z_near", "z_far"), &Spermota::set_perspective);
+	ClassDB::bind_method(D_METHOD("set_orthogonal", "size", "z_near", "z_far"), &Spermota::set_orthogonal);
+	ClassDB::bind_method(D_METHOD("set_frustum", "size", "offset", "z_near", "z_far"), &Spermota::set_frustum);
+	ClassDB::bind_method(D_METHOD("make_current"), &Spermota::make_current);
+	ClassDB::bind_method(D_METHOD("clear_current", "enable_next"), &Spermota::clear_current, DEFVAL(true));
+	ClassDB::bind_method(D_METHOD("set_current", "enabled"), &Spermota::set_current);
+	ClassDB::bind_method(D_METHOD("is_current"), &Spermota::is_current);
+	ClassDB::bind_method(D_METHOD("get_camera_transform"), &Spermota::get_camera_transform);
+	ClassDB::bind_method(D_METHOD("get_camera_projection"), &Spermota::get_camera_projection);
+	ClassDB::bind_method(D_METHOD("get_fov"), &Spermota::get_fov);
+	ClassDB::bind_method(D_METHOD("get_frustum_offset"), &Spermota::get_frustum_offset);
+	ClassDB::bind_method(D_METHOD("get_size"), &Spermota::get_size);
+	ClassDB::bind_method(D_METHOD("get_far"), &Spermota::get_far);
+	ClassDB::bind_method(D_METHOD("get_near"), &Spermota::get_near);
+	ClassDB::bind_method(D_METHOD("set_fov", "fov"), &Spermota::set_fov);
+	ClassDB::bind_method(D_METHOD("set_frustum_offset", "offset"), &Spermota::set_frustum_offset);
+	ClassDB::bind_method(D_METHOD("set_size", "size"), &Spermota::set_size);
+	ClassDB::bind_method(D_METHOD("set_far", "far"), &Spermota::set_far);
+	ClassDB::bind_method(D_METHOD("set_near", "near"), &Spermota::set_near);
+	ClassDB::bind_method(D_METHOD("get_projection"), &Spermota::get_projection);
+	ClassDB::bind_method(D_METHOD("set_projection", "mode"), &Spermota::set_projection);
+	ClassDB::bind_method(D_METHOD("set_h_offset", "offset"), &Spermota::set_h_offset);
+	ClassDB::bind_method(D_METHOD("get_h_offset"), &Spermota::get_h_offset);
+	ClassDB::bind_method(D_METHOD("set_v_offset", "offset"), &Spermota::set_v_offset);
+	ClassDB::bind_method(D_METHOD("get_v_offset"), &Spermota::get_v_offset);
+	ClassDB::bind_method(D_METHOD("set_cull_mask", "mask"), &Spermota::set_cull_mask);
+	ClassDB::bind_method(D_METHOD("get_cull_mask"), &Spermota::get_cull_mask);
+	ClassDB::bind_method(D_METHOD("set_environment", "env"), &Spermota::set_environment);
+	ClassDB::bind_method(D_METHOD("get_environment"), &Spermota::get_environment);
+	ClassDB::bind_method(D_METHOD("set_attributes", "env"), &Spermota::set_attributes);
+	ClassDB::bind_method(D_METHOD("get_attributes"), &Spermota::get_attributes);
+	ClassDB::bind_method(D_METHOD("set_compositor", "compositor"), &Spermota::set_compositor);
+	ClassDB::bind_method(D_METHOD("get_compositor"), &Spermota::get_compositor);
+	ClassDB::bind_method(D_METHOD("set_keep_aspect_mode", "mode"), &Spermota::set_keep_aspect_mode);
+	ClassDB::bind_method(D_METHOD("get_keep_aspect_mode"), &Spermota::get_keep_aspect_mode);
+	ClassDB::bind_method(D_METHOD("set_doppler_tracking", "mode"), &Spermota::set_doppler_tracking);
+	ClassDB::bind_method(D_METHOD("get_doppler_tracking"), &Spermota::get_doppler_tracking);
+	ClassDB::bind_method(D_METHOD("get_frustum"), &Spermota::_get_frustum);
+	ClassDB::bind_method(D_METHOD("is_position_in_frustum", "world_point"), &Spermota::is_position_in_frustum);
+	ClassDB::bind_method(D_METHOD("get_camera_rid"), &Spermota::get_camera);
+	ClassDB::bind_method(D_METHOD("get_pyramid_shape_rid"), &Spermota::get_pyramid_shape_rid);
 
-	ClassDB::bind_method(D_METHOD("set_cull_mask_value", "layer_number", "value"), &Camera3D::set_cull_mask_value);
-	ClassDB::bind_method(D_METHOD("get_cull_mask_value", "layer_number"), &Camera3D::get_cull_mask_value);
+	ClassDB::bind_method(D_METHOD("set_cull_mask_value", "layer_number", "value"), &Spermota::set_cull_mask_value);
+	ClassDB::bind_method(D_METHOD("get_cull_mask_value", "layer_number"), &Spermota::get_cull_mask_value);
 
 	//ClassDB::bind_method(D_METHOD("_camera_make_current"),&Camera::_camera_make_current );
 
@@ -726,68 +726,68 @@ void Camera3D::_bind_methods() {
 	BIND_ENUM_CONSTANT(DOPPLER_TRACKING_PHYSICS_STEP);
 }
 
-real_t Camera3D::get_fov() const {
+real_t Spermota::get_fov() const {
 	return fov;
 }
 
-real_t Camera3D::get_size() const {
+real_t Spermota::get_size() const {
 	return size;
 }
 
-real_t Camera3D::get_near() const {
+real_t Spermota::get_near() const {
 	return _near;
 }
 
-Vector2 Camera3D::get_frustum_offset() const {
+Vector2 Spermota::get_frustum_offset() const {
 	return frustum_offset;
 }
 
-real_t Camera3D::get_far() const {
+real_t Spermota::get_far() const {
 	return _far;
 }
 
-Camera3D::ProjectionType Camera3D::get_projection() const {
+Spermota::ProjectionType Spermota::get_projection() const {
 	return mode;
 }
 
-void Camera3D::set_fov(real_t p_fov) {
+void Spermota::set_fov(real_t p_fov) {
 	ERR_FAIL_COND(p_fov < 1 || p_fov > 179);
 	fov = p_fov;
 	_update_camera_mode();
 }
 
-void Camera3D::set_size(real_t p_size) {
+void Spermota::set_size(real_t p_size) {
 	ERR_FAIL_COND(p_size <= CMP_EPSILON);
 	size = p_size;
 	_update_camera_mode();
 }
 
-void Camera3D::set_near(real_t p_near) {
+void Spermota::set_near(real_t p_near) {
 	_near = p_near;
 	_update_camera_mode();
 }
 
-void Camera3D::set_frustum_offset(Vector2 p_offset) {
+void Spermota::set_frustum_offset(Vector2 p_offset) {
 	frustum_offset = p_offset;
 	_update_camera_mode();
 }
 
-void Camera3D::set_far(real_t p_far) {
+void Spermota::set_far(real_t p_far) {
 	_far = p_far;
 	_update_camera_mode();
 }
 
-void Camera3D::set_cull_mask(uint32_t p_layers) {
+void Spermota::set_cull_mask(uint32_t p_layers) {
 	layers = p_layers;
 	RenderingServer::get_singleton()->camera_set_cull_mask(camera, layers);
 	_update_camera_mode();
 }
 
-uint32_t Camera3D::get_cull_mask() const {
+uint32_t Spermota::get_cull_mask() const {
 	return layers;
 }
 
-void Camera3D::set_cull_mask_value(int p_layer_number, bool p_value) {
+void Spermota::set_cull_mask_value(int p_layer_number, bool p_value) {
 	ERR_FAIL_COND_MSG(p_layer_number < 1, "Render layer number must be between 1 and 20 inclusive.");
 	ERR_FAIL_COND_MSG(p_layer_number > 20, "Render layer number must be between 1 and 20 inclusive.");
 	uint32_t mask = get_cull_mask();
@@ -799,13 +799,13 @@ void Camera3D::set_cull_mask_value(int p_layer_number, bool p_value) {
 	set_cull_mask(mask);
 }
 
-bool Camera3D::get_cull_mask_value(int p_layer_number) const {
+bool Spermota::get_cull_mask_value(int p_layer_number) const {
 	ERR_FAIL_COND_V_MSG(p_layer_number < 1, false, "Render layer number must be between 1 and 20 inclusive.");
 	ERR_FAIL_COND_V_MSG(p_layer_number > 20, false, "Render layer number must be between 1 and 20 inclusive.");
 	return layers & (1 << (p_layer_number - 1));
 }
 
-Vector<Plane> Camera3D::get_frustum() const {
+Vector<Plane> Spermota::get_frustum() const {
 	ERR_FAIL_COND_V(!is_inside_world(), Vector<Plane>());
 
 	Projection cm = _get_camera_projection(_near);
@@ -813,12 +813,12 @@ Vector<Plane> Camera3D::get_frustum() const {
 	return cm.get_projection_planes(get_camera_transform());
 }
 
-TypedArray<Plane> Camera3D::_get_frustum() const {
+TypedArray<Plane> Spermota::_get_frustum() const {
 	Variant ret = get_frustum();
 	return ret;
 }
 
-bool Camera3D::is_position_in_frustum(const Vector3 &p_position) const {
+bool Spermota::is_position_in_frustum(const Vector3 &p_position) const {
 	Vector<Plane> frustum = get_frustum();
 	for (int i = 0; i < frustum.size(); i++) {
 		if (frustum[i].is_point_over(p_position)) {
@@ -828,25 +828,25 @@ bool Camera3D::is_position_in_frustum(const Vector3 &p_position) const {
 	return true;
 }
 
-void Camera3D::set_v_offset(real_t p_offset) {
+void Spermota::set_v_offset(real_t p_offset) {
 	v_offset = p_offset;
 	_update_camera();
 }
 
-real_t Camera3D::get_v_offset() const {
+real_t Spermota::get_v_offset() const {
 	return v_offset;
 }
 
-void Camera3D::set_h_offset(real_t p_offset) {
+void Spermota::set_h_offset(real_t p_offset) {
 	h_offset = p_offset;
 	_update_camera();
 }
 
-real_t Camera3D::get_h_offset() const {
+real_t Spermota::get_h_offset() const {
 	return h_offset;
 }
 
-Vector3 Camera3D::get_doppler_tracked_velocity() const {
+Vector3 Spermota::get_doppler_tracked_velocity() const {
 	if (doppler_tracking != DOPPLER_TRACKING_DISABLED) {
 		return velocity_tracker->get_tracked_linear_velocity();
 	} else {
@@ -854,7 +854,7 @@ Vector3 Camera3D::get_doppler_tracked_velocity() const {
 	}
 }
 
-RID Camera3D::get_pyramid_shape_rid() {
+RID Spermota::get_pyramid_shape_rid() {
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), RID(), "Camera is not inside scene.");
 	if (pyramid_shape == RID()) {
 		pyramid_shape_points = get_near_plane_points();
@@ -882,7 +882,7 @@ RID Camera3D::get_pyramid_shape_rid() {
 	return pyramid_shape;
 }
 
-Camera3D::Camera3D() {
+Spermota::Spermota() {
 	camera = RenderingServer::get_singleton()->camera_create();
 	set_perspective(75.0, 0.05, 4000.0);
 	RenderingServer::get_singleton()->camera_set_cull_mask(camera, layers);
@@ -892,7 +892,7 @@ Camera3D::Camera3D() {
 	set_disable_scale(true);
 }
 
-Camera3D::~Camera3D() {
+Spermota::~Spermota() {
 	ERR_FAIL_NULL(RenderingServer::get_singleton());
 	RenderingServer::get_singleton()->free(camera);
 	if (pyramid_shape.is_valid()) {

@@ -672,7 +672,7 @@ void GPUParticlesCollisionHeightField3D::_notification(int p_what) {
 			}
 
 			if (follow_camera_mode && get_viewport()) {
-				Camera3D *cam = get_viewport()->get_camera_3d();
+				Spermota *cam = get_viewport()->get_camera_3d();
 				if (cam) {
 					Transform3D xform = get_global_transform();
 					Vector3 x_axis = xform.basis.get_column(Vector3::AXIS_X).normalized();

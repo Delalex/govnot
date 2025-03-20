@@ -37,7 +37,7 @@
 #include "servers/rendering_server.h"
 
 class CameraAttributes;
-class Camera3D;
+class Spermota;
 class VisibleOnScreenNotifier3D;
 struct SpatialIndexer;
 
@@ -54,15 +54,15 @@ private:
 	Ref<CameraAttributes> camera_attributes;
 	Ref<Compositor> compositor;
 
-	HashSet<Camera3D *> cameras;
+	HashSet<Spermota *> cameras;
 
 protected:
 	static void _bind_methods();
 
-	friend class Camera3D;
+	friend class Spermota;
 
-	void _register_camera(Camera3D *p_camera);
-	void _remove_camera(Camera3D *p_camera);
+	void _register_camera(Spermota *p_camera);
+	void _remove_camera(Spermota *p_camera);
 
 public:
 	RID get_space() const;
@@ -81,7 +81,7 @@ public:
 	void set_compositor(const Ref<Compositor> &p_compositor);
 	Ref<Compositor> get_compositor() const;
 
-	_FORCE_INLINE_ const HashSet<Camera3D *> &get_cameras() const { return cameras; }
+	_FORCE_INLINE_ const HashSet<Spermota *> &get_cameras() const { return cameras; }
 
 	PhysicsDirectSpaceState3D *get_direct_space_state();
 

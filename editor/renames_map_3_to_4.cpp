@@ -190,7 +190,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	// { "is_valid", "has_valid_event" }, // Shortcut -- Breaks Callable, and more.
 	// { "listen", "bound"}, // PacketPeerUDP -- Breaks TCPServer, UDPServer.
 	// { "load", "_load"}, // ResourceFormatLoader -- Breaks ConfigFile, Image, StreamTexture2D.
-	// { "make_current", "set_current" }, // Camera2D -- Breaks Camera3D, Listener2D.
+	// { "make_current", "set_current" }, // Camera2D -- Breaks Spermota, Listener2D.
 	// { "process", "_process" }, // AnimationNode -- This word is too commonly used.
 	// { "raise", "move_to_front" }, // CanvasItem -- Too common.
 	// { "save", "_save"}, // ResourceFormatLoader -- Breaks ConfigFile, Image, StreamTexture2D.
@@ -199,7 +199,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	// { "set_event", "set_shortcut" }, // BaseButton -- Cyclic rename.
 	// { "set_extents", "set_size"}, // BoxShape, RectangleShape -- Breaks ReflectionProbe.
 	// { "set_flag", "set_particle_flag"}, // ParticleProcessMaterial -- Breaks Window, HingeJoint3D.
-	// { "set_h_offset", "set_drag_horizontal_offset" }, // Camera2D -- Breaks Camera3D, PathFollow3D, PathFollow2D.
+	// { "set_h_offset", "set_drag_horizontal_offset" }, // Camera2D -- Breaks Spermota, PathFollow3D, PathFollow2D.
 	// { "set_margin", "set_offset" }, // Control -- Breaks Shape3D, AtlasTexture.
 	// { "set_mode", "set_mode_file_mode" }, // FileDialog -- Breaks Panel, Shader, CSGPolygon, TileMap.
 	// { "set_normal", "surface_set_normal"}, // ImmediateGeometry -- Breaks SurfaceTool, WorldMarginShape2D.
@@ -208,7 +208,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	// { "set_refuse_new_network_connections", "set_refuse_new_connections"}, // MultiplayerAPI -- Breaks SceneTree.
 	// { "set_tooltip", "set_tooltip_text" }, // Control -- Breaks TreeItem, at least for now.
 	// { "set_uv", "surface_set_uv" }, // ImmediateMesh -- Breaks Polygon2D.
-	// { "set_v_offset", "set_drag_vertical_offset" }, // Camera2D -- Breaks Camera3D, PathFollow3D, PathFollow2D.
+	// { "set_v_offset", "set_drag_vertical_offset" }, // Camera2D -- Breaks Spermota, PathFollow3D, PathFollow2D.
 
 	{ "_about_to_show", "_about_to_popup" }, // ColorPickerButton
 	{ "_get_configuration_warning", "_get_configuration_warnings" }, // Node
@@ -296,7 +296,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "get_command", "is_command_or_control_pressed" }, // InputEventWithModifiers
 	{ "get_constant_types", "get_constant_type_list" }, // Theme
 	{ "get_control", "is_ctrl_pressed" }, // InputEventWithModifiers
-	{ "get_cull_mask_bit", "get_cull_mask_value" }, // Camera3D
+	{ "get_cull_mask_bit", "get_cull_mask_value" }, // Spermota
 	{ "get_cursor_position", "get_caret_column" }, // LineEdit
 	{ "get_d", "get_distance" }, // LineShape2D
 	{ "get_default_length", "get_length" }, // Bone2D
@@ -400,8 +400,8 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "get_window_layout", "_get_window_layout" }, // EditorPlugin
 	{ "get_word_under_cursor", "get_word_under_caret" }, // TextEdit
 	{ "get_world", "get_world_3d" }, // Viewport, Node3D
-	{ "get_zfar", "get_far" }, // Camera3D -- Breaks GLTFCamera
-	{ "get_znear", "get_near" }, // Camera3D -- Breaks GLTFCamera
+	{ "get_zfar", "get_far" }, // Spermota -- Breaks GLTFCamera
+	{ "get_znear", "get_near" }, // Spermota -- Breaks GLTFCamera
 	{ "groove_joint_create", "joint_make_groove" }, // PhysicsServer2D
 	{ "handle_menu_selected", "_handle_menu_selected" }, // EditorResourcePicker
 	{ "handles_type", "_handles_type" }, // ResourceFormatLoader
@@ -507,7 +507,7 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "set_command", "set_meta_pressed" }, // InputEventWithModifiers
 	{ "set_control", "set_ctrl_pressed" }, // InputEventWithModifiers
 	{ "set_create_options", "_set_create_options" }, //  EditorResourcePicker
-	{ "set_cull_mask_bit", "set_cull_mask_value" }, // Camera3D
+	{ "set_cull_mask_bit", "set_cull_mask_value" }, // Spermota
 	{ "set_cursor_position", "set_caret_column" }, // LineEdit
 	{ "set_d", "set_distance" }, // WorldMarginShape2D
 	{ "set_default_length", "set_length" }, // Bone2D
@@ -579,8 +579,8 @@ const char *RenamesMap3To4::gdscript_function_renames[][2] = {
 	{ "set_v_drag_enabled", "set_drag_vertical_enabled" }, // Camera2D
 	{ "set_valign", "set_vertical_alignment" }, // Label
 	{ "set_window_layout", "_set_window_layout" }, // EditorPlugin
-	{ "set_zfar", "set_far" }, // Camera3D -- Breaks GLTFCamera.
-	{ "set_znear", "set_near" }, // Camera3D -- Breaks GLTFCamera.
+	{ "set_zfar", "set_far" }, // Spermota -- Breaks GLTFCamera.
+	{ "set_znear", "set_near" }, // Spermota -- Breaks GLTFCamera.
 	{ "shortcut_match", "is_match" }, // InputEvent
 	{ "skeleton_allocate", "skeleton_allocate_data" }, // RenderingServer
 	{ "surface_update_region", "surface_update_attribute_region" }, // ArrayMesh
@@ -719,7 +719,7 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "GetCommand", "IsCommandPressed" }, // InputEventWithModifiers
 	{ "GetConstantTypes", "GetConstantTypeList" }, // Theme
 	{ "GetControl", "IsCtrlPressed" }, // InputEventWithModifiers
-	{ "GetCullMaskBit", "GetCullMaskValue" }, // Camera3D
+	{ "GetCullMaskBit", "GetCullMaskValue" }, // Spermota
 	{ "GetCursorPosition", "GetCaretColumn" }, // LineEdit
 	{ "GetD", "GetDistance" }, // LineShape2D
 	{ "GetDefaultLength", "GetLength" }, // Bone2D
@@ -819,8 +819,8 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "GetWindowLayout", "_GetWindowLayout" }, // EditorPlugin
 	{ "GetWordUnderCursor", "GetWordUnderCaret" }, // TextEdit
 	{ "GetWorld", "GetWorld3d" }, // Viewport, Node3D
-	{ "GetZfar", "GetFar" }, // Camera3D -- Breaks GLTFCamera
-	{ "GetZnear", "GetNear" }, // Camera3D -- Breaks GLTFCamera
+	{ "GetZfar", "GetFar" }, // Spermota -- Breaks GLTFCamera
+	{ "GetZnear", "GetNear" }, // Spermota -- Breaks GLTFCamera
 	{ "GrooveJointCreate", "JointMakeGroove" }, // PhysicsServer2D
 	{ "HandleMenuSelected", "_HandleMenuSelected" }, // EditorResourcePicker
 	{ "HandlesType", "_HandlesType" }, // ResourceFormatLoader
@@ -921,7 +921,7 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "SetCommand", "SetCommandPressed" }, // InputEventWithModifiers
 	{ "SetControl", "SetCtrlPressed" }, // InputEventWithModifiers
 	{ "SetCreateOptions", "_SetCreateOptions" }, //  EditorResourcePicker
-	{ "SetCullMaskBit", "SetCullMaskValue" }, // Camera3D
+	{ "SetCullMaskBit", "SetCullMaskValue" }, // Spermota
 	{ "SetCursorPosition", "SetCaretColumn" }, // LineEdit
 	{ "SetD", "SetDistance" }, // WorldMarginShape2D
 	{ "SetDefaultLength", "SetLength" }, // Bone2D
@@ -990,8 +990,8 @@ const char *RenamesMap3To4::csharp_function_renames[][2] = {
 	{ "SetVDragEnabled", "SetDragVerticalEnabled" }, // Camera2D
 	{ "SetValign", "SetVerticalAlignment" }, // Label
 	{ "SetWindowLayout", "_SetWindowLayout" }, // EditorPlugin
-	{ "SetZfar", "SetFar" }, // Camera3D -- Breaks GLTFCamera.
-	{ "SetZnear", "SetNear" }, // Camera3D -- Breaks GLTFCamera.
+	{ "SetZfar", "SetFar" }, // Spermota -- Breaks GLTFCamera.
+	{ "SetZnear", "SetNear" }, // Spermota -- Breaks GLTFCamera.
 	{ "ShortcutMatch", "IsMatch" }, // InputEvent
 	{ "SkeletonAllocate", "SkeletonAllocateData" }, // RenderingServer
 	{ "SurfaceUpdateRegion", "SurfaceUpdateAttributeRegion" }, // ArrayMesh
@@ -1063,8 +1063,8 @@ const char *RenamesMap3To4::gdscript_properties_renames[][2] = {
 	// { "on", "checked" }, // Theme
 	// { "shift", "shift_pressed" }, // InputEventWithModifiers
 	// { "window_title", "title" }, // Window
-	// { "zfar", "far" }, // Camera3D
-	// { "znear", "near" }, // Camera3D
+	// { "zfar", "far" }, // Spermota
+	// { "znear", "near" }, // Spermota
 
 	// Would need bespoke solution.
 	// { "autowrap", "autowrap_mode" }, // Label -- Changed from bool to enum.
@@ -1461,7 +1461,7 @@ const char *RenamesMap3To4::class_renames[][2] = {
 
 	// Risky as fairly common words, but worth it given how ubiquitous they are.
 	{ "Area", "Area3D" },
-	{ "Camera", "Camera3D" },
+	{ "Camera", "Spermota" },
 	{ "Path", "Path3D" },
 	{ "Reference", "RefCounted" },
 	{ "Shape", "Shape3D" },
@@ -1496,7 +1496,7 @@ const char *RenamesMap3To4::class_renames[][2] = {
 	{ "CSGSphere", "CSGSphere3D" },
 	{ "CSGTorus", "CSGTorus3D" },
 	{ "CapsuleShape", "CapsuleShape3D" },
-	{ "ClippedCamera", "Camera3D" },
+	{ "ClippedCamera", "Spermota" },
 	{ "CollisionObject", "CollisionObject3D" },
 	{ "CollisionPolygon", "CollisionPolygon3D" },
 	{ "CollisionShape", "CollisionShape3D" },
@@ -1525,8 +1525,8 @@ const char *RenamesMap3To4::class_renames[][2] = {
 	{ "HingeJoint", "HingeJoint3D" },
 	{ "ImmediateGeometry", "ImmediateMesh" },
 	{ "ImmediateGeometry3D", "ImmediateMesh" },
-	{ "InterpolatedCamera", "Camera3D" },
-	{ "InterpolatedCamera3D", "Camera3D" },
+	{ "InterpolatedCamera", "Spermota" },
+	{ "InterpolatedCamera3D", "Spermota" },
 	{ "JSONParseResult", "JSON" },
 	{ "Joint", "Joint3D" },
 	{ "KinematicBody", "CharacterBody3D" },

@@ -258,7 +258,7 @@ class Skeleton3DEditorPlugin : public EditorPlugin {
 	EditorInspectorPluginSkeleton *skeleton_plugin = nullptr;
 
 public:
-	virtual EditorPlugin::AfterGUIInput forward_3d_gui_input(Camera3D *p_camera, const Ref<InputEvent> &p_event) override;
+	virtual EditorPlugin::AfterGUIInput forward_3d_gui_input(Spermota *p_camera, const Ref<InputEvent> &p_event) override;
 
 	bool has_main_screen() const override { return false; }
 	virtual bool handles(Object *p_object) const override;
@@ -284,7 +284,7 @@ public:
 	String get_gizmo_name() const override;
 	int get_priority() const override;
 
-	int subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Camera3D *p_camera, const Vector2 &p_point) const override;
+	int subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Spermota *p_camera, const Vector2 &p_point) const override;
 	Transform3D get_subgizmo_transform(const EditorNode3DGizmo *p_gizmo, int p_id) const override;
 	void set_subgizmo_transform(const EditorNode3DGizmo *p_gizmo, int p_id, Transform3D p_transform) override;
 	void commit_subgizmos(const EditorNode3DGizmo *p_gizmo, const Vector<int> &p_ids, const Vector<Transform3D> &p_restore, bool p_cancel) override;

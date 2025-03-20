@@ -109,7 +109,7 @@ protected:
 	void _on_transform_changed();
 
 	friend class Viewport;
-	virtual void _input_event_call(Camera3D *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape);
+	virtual void _input_event_call(Spermota *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape);
 	virtual void _mouse_enter();
 	virtual void _mouse_exit();
 
@@ -120,7 +120,7 @@ protected:
 	void set_only_update_transform_changes(bool p_enable);
 	bool is_only_update_transform_changes_enabled() const;
 
-	GDVIRTUAL5(_input_event, Camera3D *, Ref<InputEvent>, Vector3, Vector3, int)
+	GDVIRTUAL5(_input_event, Spermota *, Ref<InputEvent>, Vector3, Vector3, int)
 	GDVIRTUAL0(_mouse_enter)
 	GDVIRTUAL0(_mouse_exit)
 public:

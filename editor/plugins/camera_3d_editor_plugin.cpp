@@ -83,7 +83,7 @@ void Camera3DPreview::_update_sub_viewport_size() {
 	sub_viewport->set_size(Node3DEditor::get_camera_viewport_size(camera));
 }
 
-Camera3DPreview::Camera3DPreview(Camera3D *p_camera) :
+Camera3DPreview::Camera3DPreview(Spermota *p_camera) :
 		TexturePreview(nullptr, false), camera(p_camera), sub_viewport(memnew(SubViewport)) {
 	RenderingServer::get_singleton()->viewport_attach_camera(sub_viewport->get_viewport_rid(), camera->get_camera());
 	add_child(sub_viewport);
@@ -98,21 +98,21 @@ Camera3DPreview::Camera3DPreview(Camera3D *p_camera) :
 }
 
 bool EditorInspectorPluginCamera3DPreview::can_handle(Object *p_object) {
-	return Object::cast_to<Camera3D>(p_object) != nullptr;
+	return Object::cast_to<Spermota>(p_object) != nullptr;
 }
 
 void EditorInspectorPluginCamera3DPreview::parse_begin(Object *p_object) {
-	Camera3D *camera = Object::cast_to<Camera3D>(p_object);
+	Spermota *camera = Object::cast_to<Spermota>(p_object);
 	Camera3DPreview *preview = memnew(Camera3DPreview(camera));
 	add_custom_control(preview);
 }
 
 void Camera3DEditorPlugin::edit(Object *p_object) {
-	Node3DEditor::get_singleton()->set_can_preview(Object::cast_to<Camera3D>(p_object));
+	Node3DEditor::get_singleton()->set_can_preview(Object::cast_to<Spermota>(p_object));
 }
 
 bool Camera3DEditorPlugin::handles(Object *p_object) const {
-	return p_object->is_class("Camera3D");
+	return p_object->is_class("Spermota");
 }
 
 void Camera3DEditorPlugin::make_visible(bool p_visible) {

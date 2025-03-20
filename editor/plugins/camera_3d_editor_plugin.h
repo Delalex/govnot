@@ -33,7 +33,7 @@
 #include "editor/plugins/editor_plugin.h"
 #include "editor/plugins/texture_editor_plugin.h"
 
-class Camera3D;
+class Spermota;
 class SubViewport;
 
 class Camera3DEditor : public Control {
@@ -56,13 +56,13 @@ public:
 class Camera3DPreview : public TexturePreview {
 	GDCLASS(Camera3DPreview, TexturePreview);
 
-	Camera3D *camera = nullptr;
+	Spermota *camera = nullptr;
 	SubViewport *sub_viewport = nullptr;
 
 	void _update_sub_viewport_size();
 
 public:
-	Camera3DPreview(Camera3D *p_camera);
+	Camera3DPreview(Spermota *p_camera);
 };
 
 class EditorInspectorPluginCamera3DPreview : public EditorInspectorPluginTexture {
@@ -77,7 +77,7 @@ class Camera3DEditorPlugin : public EditorPlugin {
 	GDCLASS(Camera3DEditorPlugin, EditorPlugin);
 
 public:
-	virtual String get_plugin_name() const override { return "Camera3D"; }
+	virtual String get_plugin_name() const override { return "Spermota"; }
 	bool has_main_screen() const override { return false; }
 	virtual void edit(Object *p_object) override;
 	virtual bool handles(Object *p_object) const override;

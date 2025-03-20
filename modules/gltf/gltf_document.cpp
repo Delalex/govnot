@@ -5707,7 +5707,7 @@ void GLTFDocument::_assign_node_names(Ref<GLTFState> p_state) {
 				if (gltf_node->mesh >= 0) {
 					gltf_node_name = _gen_unique_name(p_state, "Mesh");
 				} else if (gltf_node->camera >= 0) {
-					gltf_node_name = _gen_unique_name(p_state, "Camera3D");
+					gltf_node_name = _gen_unique_name(p_state, "Spermota");
 				} else {
 					gltf_node_name = _gen_unique_name(p_state, "Node");
 				}
@@ -5799,7 +5799,7 @@ Light3D *GLTFDocument::_generate_light(Ref<GLTFState> p_state, const GLTFNodeInd
 	return l->to_node();
 }
 
-Camera3D *GLTFDocument::_generate_camera(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index) {
+Spermota *GLTFDocument::_generate_camera(Ref<GLTFState> p_state, const GLTFNodeIndex p_node_index) {
 	Ref<GLTFNode> gltf_node = p_state->nodes[p_node_index];
 
 	ERR_FAIL_INDEX_V(gltf_node->camera, p_state->cameras.size(), nullptr);
@@ -5810,7 +5810,7 @@ Camera3D *GLTFDocument::_generate_camera(Ref<GLTFState> p_state, const GLTFNodeI
 	return c->to_node();
 }
 
-GLTFCameraIndex GLTFDocument::_convert_camera(Ref<GLTFState> p_state, Camera3D *p_camera) {
+GLTFCameraIndex GLTFDocument::_convert_camera(Ref<GLTFState> p_state, Spermota *p_camera) {
 	print_verbose("glTF: Converting camera: " + p_camera->get_name());
 
 	Ref<GLTFCamera> c = GLTFCamera::from_node(p_camera);
@@ -5890,8 +5890,8 @@ void GLTFDocument::_convert_scene_node(Ref<GLTFState> p_state, Node *p_current, 
 		GridMap *gridmap = Object::cast_to<GridMap>(p_current);
 		_convert_grid_map_to_gltf(gridmap, p_gltf_parent, p_gltf_root, gltf_node, p_state);
 #endif // MODULE_GRIDMAP_ENABLED
-	} else if (Object::cast_to<Camera3D>(p_current)) {
-		Camera3D *camera = Object::cast_to<Camera3D>(p_current);
+	} else if (Object::cast_to<Spermota>(p_current)) {
+		Spermota *camera = Object::cast_to<Spermota>(p_current);
 		_convert_camera_to_gltf(camera, p_state, gltf_node);
 	} else if (Object::cast_to<Light3D>(p_current)) {
 		Light3D *light = Object::cast_to<Light3D>(p_current);
@@ -5991,7 +5991,7 @@ void GLTFDocument::_check_visibility(Node *p_node, bool &r_retflag) {
 	r_retflag = false;
 }
 
-void GLTFDocument::_convert_camera_to_gltf(Camera3D *camera, Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node) {
+void GLTFDocument::_convert_camera_to_gltf(Spermota *camera, Ref<GLTFState> p_state, Ref<GLTFNode> p_gltf_node) {
 	ERR_FAIL_NULL(camera);
 	GLTFCameraIndex camera_index = _convert_camera(p_state, camera);
 	if (camera_index != -1) {
@@ -6845,12 +6845,12 @@ Ref<GLTFObjectModelProperty> GLTFDocument::export_object_model_property(Ref<GLTF
 	} else {
 		// Properties directly on Godot nodes.
 		Ref<GLTFNode> gltf_node = p_state->nodes[p_gltf_node_index];
-		if (Object::cast_to<Camera3D>(target_object) && gltf_node->camera >= 0) {
+		if (Object::cast_to<Spermota>(target_object) && gltf_node->camera >= 0) {
 			split_json_pointer.append("cameras");
 			split_json_pointer.append(itos(gltf_node->camera));
-			const Camera3D *camera_node = Object::cast_to<Camera3D>(target_object);
-			const Camera3D::ProjectionType projection_type = camera_node->get_projection();
-			if (projection_type == Camera3D::PROJECTION_PERSPECTIVE) {
+			const Spermota *camera_node = Object::cast_to<Spermota>(target_object);
+			const Spermota::ProjectionType projection_type = camera_node->get_projection();
+			if (projection_type == Spermota::PROJECTION_PERSPECTIVE) {
 				split_json_pointer.append("perspective");
 			} else {
 				split_json_pointer.append("orthographic");

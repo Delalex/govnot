@@ -288,7 +288,7 @@ void CollisionObject3D::_apply_enabled() {
 	}
 }
 
-void CollisionObject3D::_input_event_call(Camera3D *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape) {
+void CollisionObject3D::_input_event_call(Spermota *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape) {
 	GDVIRTUAL_CALL(_input_event, p_camera, p_input_event, p_pos, p_normal, p_shape);
 	emit_signal(SceneStringName(input_event), p_camera, p_input_event, p_pos, p_normal, p_shape);
 }

@@ -127,7 +127,7 @@ void EditorNode3DGizmo::begin_handle_action(int p_id, bool p_secondary) {
 	gizmo_plugin->begin_handle_action(this, p_id, p_secondary);
 }
 
-void EditorNode3DGizmo::set_handle(int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void EditorNode3DGizmo::set_handle(int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	if (GDVIRTUAL_CALL(_set_handle, p_id, p_secondary, p_camera, p_point)) {
 		return;
 	}
@@ -145,7 +145,7 @@ void EditorNode3DGizmo::commit_handle(int p_id, bool p_secondary, const Variant 
 	gizmo_plugin->commit_handle(this, p_id, p_secondary, p_restore, p_cancel);
 }
 
-int EditorNode3DGizmo::subgizmos_intersect_ray(Camera3D *p_camera, const Vector2 &p_point) const {
+int EditorNode3DGizmo::subgizmos_intersect_ray(Spermota *p_camera, const Vector2 &p_point) const {
 	int id;
 	if (GDVIRTUAL_CALL(_subgizmos_intersect_ray, p_camera, p_point, id)) {
 		return id;
@@ -155,7 +155,7 @@ int EditorNode3DGizmo::subgizmos_intersect_ray(Camera3D *p_camera, const Vector2
 	return gizmo_plugin->subgizmos_intersect_ray(this, p_camera, p_point);
 }
 
-Vector<int> EditorNode3DGizmo::subgizmos_intersect_frustum(const Camera3D *p_camera, const Vector<Plane> &p_frustum) const {
+Vector<int> EditorNode3DGizmo::subgizmos_intersect_frustum(const Spermota *p_camera, const Vector<Plane> &p_frustum) const {
 	TypedArray<Plane> frustum;
 	frustum.resize(p_frustum.size());
 	for (int i = 0; i < p_frustum.size(); i++) {
@@ -500,7 +500,7 @@ void EditorNode3DGizmo::add_solid_box(const Ref<Material> &p_material, Vector3 p
 	add_mesh(m, p_material, p_xform);
 }
 
-bool EditorNode3DGizmo::intersect_frustum(const Camera3D *p_camera, const Vector<Plane> &p_frustum) {
+bool EditorNode3DGizmo::intersect_frustum(const Spermota *p_camera, const Vector<Plane> &p_frustum) {
 	ERR_FAIL_NULL_V(spatial_node, false);
 	ERR_FAIL_COND_V(!valid, false);
 
@@ -578,7 +578,7 @@ bool EditorNode3DGizmo::intersect_frustum(const Camera3D *p_camera, const Vector
 	return false;
 }
 
-void EditorNode3DGizmo::handles_intersect_ray(Camera3D *p_camera, const Vector2 &p_point, bool p_shift_pressed, int &r_id, bool &r_secondary) {
+void EditorNode3DGizmo::handles_intersect_ray(Spermota *p_camera, const Vector2 &p_point, bool p_shift_pressed, int &r_id, bool &r_secondary) {
 	r_id = -1;
 	r_secondary = false;
 
@@ -640,7 +640,7 @@ void EditorNode3DGizmo::handles_intersect_ray(Camera3D *p_camera, const Vector2 
 	}
 }
 
-bool EditorNode3DGizmo::intersect_ray(Camera3D *p_camera, const Point2 &p_point, Vector3 &r_pos, Vector3 &r_normal) {
+bool EditorNode3DGizmo::intersect_ray(Spermota *p_camera, const Point2 &p_point, Vector3 &r_pos, Vector3 &r_normal) {
 	ERR_FAIL_NULL_V(spatial_node, false);
 	ERR_FAIL_COND_V(!valid, false);
 
@@ -657,7 +657,7 @@ bool EditorNode3DGizmo::intersect_ray(Camera3D *p_camera, const Point2 &p_point,
 
 		float scale = t.origin.distance_to(p_camera->get_camera_transform().origin);
 
-		if (p_camera->get_projection() == Camera3D::PROJECTION_ORTHOGONAL) {
+		if (p_camera->get_projection() == Spermota::PROJECTION_ORTHOGONAL) {
 			float aspect = p_camera->get_viewport()->get_visible_rect().size.aspect();
 			float size = p_camera->get_size();
 			scale = size / aspect;
@@ -1151,7 +1151,7 @@ void EditorNode3DGizmoPlugin::begin_handle_action(const EditorNode3DGizmo *p_giz
 	GDVIRTUAL_CALL(_begin_handle_action, Ref<EditorNode3DGizmo>(p_gizmo), p_id, p_secondary);
 }
 
-void EditorNode3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void EditorNode3DGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	GDVIRTUAL_CALL(_set_handle, Ref<EditorNode3DGizmo>(p_gizmo), p_id, p_secondary, p_camera, p_point);
 }
 
@@ -1159,13 +1159,13 @@ void EditorNode3DGizmoPlugin::commit_handle(const EditorNode3DGizmo *p_gizmo, in
 	GDVIRTUAL_CALL(_commit_handle, Ref<EditorNode3DGizmo>(p_gizmo), p_id, p_secondary, p_restore, p_cancel);
 }
 
-int EditorNode3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Camera3D *p_camera, const Vector2 &p_point) const {
+int EditorNode3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Spermota *p_camera, const Vector2 &p_point) const {
 	int ret = -1;
 	GDVIRTUAL_CALL(_subgizmos_intersect_ray, Ref<EditorNode3DGizmo>(p_gizmo), p_camera, p_point, ret);
 	return ret;
 }
 
-Vector<int> EditorNode3DGizmoPlugin::subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Camera3D *p_camera, const Vector<Plane> &p_frustum) const {
+Vector<int> EditorNode3DGizmoPlugin::subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Spermota *p_camera, const Vector<Plane> &p_frustum) const {
 	TypedArray<Plane> frustum;
 	frustum.resize(p_frustum.size());
 	for (int i = 0; i < p_frustum.size(); i++) {

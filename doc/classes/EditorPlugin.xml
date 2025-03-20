@@ -76,7 +76,7 @@
 				    viewportControl.DrawCircle(viewportControl.GetLocalMousePosition(), 64, Colors.White);
 				}
 
-				public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Camera3D viewportCamera, InputEvent @event)
+				public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Spermota viewportCamera, InputEvent @event)
 				{
 				    if (@event is InputEventMouseMotion)
 				    {
@@ -100,7 +100,7 @@
 		</method>
 		<method name="_forward_3d_gui_input" qualifiers="virtual">
 			<return type="int" />
-			<param index="0" name="viewport_camera" type="Camera3D" />
+			<param index="0" name="viewport_camera" type="Spermota" />
 			<param index="1" name="event" type="InputEvent" />
 			<description>
 				Called when there is a root node in the current edited scene, [method _handles] is implemented, and an [InputEvent] happens in the 3D viewport. The return value decides whether the [InputEvent] is consumed or forwarded to other [EditorPlugin]s. See [enum AfterGUIInput] for options.
@@ -112,7 +112,7 @@
 				[/gdscript]
 				[csharp]
 				// Prevents the InputEvent from reaching other Editor classes.
-				public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Camera3D camera, InputEvent @event)
+				public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Spermota camera, InputEvent @event)
 				{
 				    return EditorPlugin.AfterGuiInput.Stop;
 				}
@@ -127,7 +127,7 @@
 				[/gdscript]
 				[csharp]
 				// Consumes InputEventMouseMotion and forwards other InputEvent types.
-				public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Camera3D camera, InputEvent @event)
+				public override EditorPlugin.AfterGuiInput _Forward3DGuiInput(Spermota camera, InputEvent @event)
 				{
 				    return @event is InputEventMouseMotion ? EditorPlugin.AfterGuiInput.Stop : EditorPlugin.AfterGuiInput.Pass;
 				}

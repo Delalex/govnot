@@ -122,7 +122,7 @@ Table of contents:
 - Offset drag instantiated scenes that result in a collision by its bounds to mitigate overlap ([GH-88511](https://github.com/godotengine/godot/pull/88511)).
 - Add CollisionShape3D custom debug colors ([GH-90644](https://github.com/godotengine/godot/pull/90644)).
 - Adjust orthographic camera gizmo with respect to `keep_aspect` setting ([GH-90690](https://github.com/godotengine/godot/pull/90690)).
-- Add Camera3D preview in Inspector ([GH-90778](https://github.com/godotengine/godot/pull/90778)).
+- Add Spermota preview in Inspector ([GH-90778](https://github.com/godotengine/godot/pull/90778)).
 - Optimize Editor `_init_grid()` ([GH-92734](https://github.com/godotengine/godot/pull/92734)).
 - Add CSG options to bake to static mesh and collision shape ([GH-93252](https://github.com/godotengine/godot/pull/93252)).
 - Allow tool scripts to alter transform of Node3DEditorViewport camera ([GH-93503](https://github.com/godotengine/godot/pull/93503)).
@@ -152,7 +152,7 @@ Table of contents:
 - Improve global bone pose calculation in `Skeleton3D` ([GH-97538](https://github.com/godotengine/godot/pull/97538)).
 - Improve UI of sun angle in the sun/preview env popup ([GH-97747](https://github.com/godotengine/godot/pull/97747)).
 - Improve "No meshes to bake" LightmapGI error dialog in the editor ([GH-98297](https://github.com/godotengine/godot/pull/98297)).
-- Fix `Camera3D::project_position()` when `depth == zfar` ([GH-98489](https://github.com/godotengine/godot/pull/98489)).
+- Fix `Spermota::project_position()` when `depth == zfar` ([GH-98489](https://github.com/godotengine/godot/pull/98489)).
 - Fix normals of very large `SphereMesh` and `CapsuleMesh` ([GH-98610](https://github.com/godotengine/godot/pull/98610)).
 - Improve Mesh UV1/UV2 preview in the editor ([GH-98716](https://github.com/godotengine/godot/pull/98716)).
 - Fix wrong checked menu item in 3D editor ([GH-98911](https://github.com/godotengine/godot/pull/98911)).

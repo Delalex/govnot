@@ -12,7 +12,7 @@
 	<methods>
 		<method name="_input_event" qualifiers="virtual">
 			<return type="void" />
-			<param index="0" name="camera" type="Camera3D" />
+			<param index="0" name="camera" type="Spermota" />
 			<param index="1" name="event" type="InputEvent" />
 			<param index="2" name="event_position" type="Vector3" />
 			<param index="3" name="normal" type="Vector3" />

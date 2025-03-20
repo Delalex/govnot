@@ -32,7 +32,7 @@
 
 #include "core/io/resource.h"
 
-class Camera3D;
+class Spermota;
 class GLTFObjectModelProperty;
 
 // Reference and test file:
@@ -67,8 +67,8 @@ public:
 	real_t get_depth_near() const { return depth_near; }
 	void set_depth_near(real_t p_val) { depth_near = p_val; }
 
-	static Ref<GLTFCamera> from_node(const Camera3D *p_camera);
-	Camera3D *to_node() const;
+	static Ref<GLTFCamera> from_node(const Spermota *p_camera);
+	Spermota *to_node() const;
 
 	static Ref<GLTFCamera> from_dictionary(const Dictionary p_dictionary);
 	virtual Dictionary to_dictionary() const;

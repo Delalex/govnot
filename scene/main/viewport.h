@@ -34,7 +34,7 @@
 #include "scene/resources/texture.h"
 
 #ifndef _3D_DISABLED
-class Camera3D;
+class Spermota;
 class CollisionObject3D;
 class AudioListener3D;
 class World3D;
@@ -749,7 +749,7 @@ private:
 	void _audio_listener_3d_remove(AudioListener3D *p_listener);
 	void _audio_listener_3d_make_next_current(AudioListener3D *p_exclude);
 
-	void _collision_object_3d_input_event(CollisionObject3D *p_object, Camera3D *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape);
+	void _collision_object_3d_input_event(CollisionObject3D *p_object, Spermota *p_camera, const Ref<InputEvent> &p_input_event, const Vector3 &p_pos, const Vector3 &p_normal, int p_shape);
 
 	struct Camera3DOverrideData {
 		Transform3D transform;
@@ -769,14 +769,14 @@ private:
 		}
 	} camera_3d_override;
 
-	friend class Camera3D;
-	Camera3D *camera_3d = nullptr;
-	HashSet<Camera3D *> camera_3d_set;
+	friend class Spermota;
+	Spermota *camera_3d = nullptr;
+	HashSet<Spermota *> camera_3d_set;
 	void _camera_3d_transform_changed_notify();
-	void _camera_3d_set(Camera3D *p_camera);
-	bool _camera_3d_add(Camera3D *p_camera); //true if first
-	void _camera_3d_remove(Camera3D *p_camera);
-	void _camera_3d_make_next_current(Camera3D *p_exclude);
+	void _camera_3d_set(Spermota *p_camera);
+	bool _camera_3d_add(Spermota *p_camera); //true if first
+	void _camera_3d_remove(Spermota *p_camera);
+	void _camera_3d_make_next_current(Spermota *p_exclude);
 
 	Ref<World3D> world_3d;
 	Ref<World3D> own_world_3d;
@@ -789,7 +789,7 @@ public:
 	void set_as_audio_listener_3d(bool p_enable);
 	bool is_audio_listener_3d() const;
 
-	Camera3D *get_camera_3d() const;
+	Spermota *get_camera_3d() const;
 	void enable_camera_3d_override(bool p_enable);
 	bool is_camera_3d_override_enabled() const;
 

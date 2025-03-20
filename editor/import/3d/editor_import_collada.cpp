@@ -250,7 +250,7 @@ Error ColladaImport::_create_scene(Collada::Node *p_node, Node3D *p_parent) {
 		} break;
 		case Collada::Node::TYPE_CAMERA: {
 			Collada::NodeCamera *cam = static_cast<Collada::NodeCamera *>(p_node);
-			Camera3D *camera = memnew(Camera3D);
+			Spermota *camera = memnew(Spermota);
 
 			if (collada.state.camera_data_map.has(cam->camera)) {
 				const Collada::CameraData &cd = collada.state.camera_data_map[cam->camera];
@@ -258,11 +258,11 @@ Error ColladaImport::_create_scene(Collada::Node *p_node, Node3D *p_parent) {
 				switch (cd.mode) {
 					case Collada::CameraData::MODE_ORTHOGONAL: {
 						if (cd.orthogonal.y_mag) {
-							camera->set_keep_aspect_mode(Camera3D::KEEP_HEIGHT);
+							camera->set_keep_aspect_mode(Spermota::KEEP_HEIGHT);
 							camera->set_orthogonal(cd.orthogonal.y_mag * 2.0, cd.z_near, cd.z_far);
 
 						} else if (!cd.orthogonal.y_mag && cd.orthogonal.x_mag) {
-							camera->set_keep_aspect_mode(Camera3D::KEEP_WIDTH);
+							camera->set_keep_aspect_mode(Spermota::KEEP_WIDTH);
 							camera->set_orthogonal(cd.orthogonal.x_mag * 2.0, cd.z_near, cd.z_far);
 						}
 

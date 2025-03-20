@@ -52,7 +52,7 @@ class MeshEditor : public SubViewportContainer {
 	Node3D *rotation = nullptr;
 	DirectionalLight3D *light1 = nullptr;
 	DirectionalLight3D *light2 = nullptr;
-	Camera3D *camera = nullptr;
+	Spermota *camera = nullptr;
 	Ref<CameraAttributesPractical> camera_attributes;
 
 	Ref<Mesh> mesh;

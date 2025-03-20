@@ -107,7 +107,7 @@
 			<description>
 				Creates a 3D camera and adds it to the RenderingServer. It can be accessed with the RID that is returned. This RID will be used in all [code]camera_*[/code] RenderingServer functions.
 				Once finished with your RID, you will want to free the RID using the RenderingServer's [method free_rid] method.
-				[b]Note:[/b] The equivalent node is [Camera3D].
+				[b]Note:[/b] The equivalent node is [Spermota].
 			</description>
 		</method>
 		<method name="camera_set_camera_attributes">
@@ -123,7 +123,7 @@
 			<param index="0" name="camera" type="RID" />
 			<param index="1" name="compositor" type="RID" />
 			<description>
-				Sets the compositor used by this camera. Equivalent to [member Camera3D.compositor].
+				Sets the compositor used by this camera. Equivalent to [member Spermota.compositor].
 			</description>
 		</method>
 		<method name="camera_set_cull_mask">
@@ -131,7 +131,7 @@
 			<param index="0" name="camera" type="RID" />
 			<param index="1" name="layers" type="int" />
 			<description>
-				Sets the cull mask associated with this camera. The cull mask describes which 3D layers are rendered by this camera. Equivalent to [member Camera3D.cull_mask].
+				Sets the cull mask associated with this camera. The cull mask describes which 3D layers are rendered by this camera. Equivalent to [member Spermota.cull_mask].
 			</description>
 		</method>
 		<method name="camera_set_environment">
@@ -139,7 +139,7 @@
 			<param index="0" name="camera" type="RID" />
 			<param index="1" name="env" type="RID" />
 			<description>
-				Sets the environment used by this camera. Equivalent to [member Camera3D.environment].
+				Sets the environment used by this camera. Equivalent to [member Spermota.environment].
 			</description>
 		</method>
 		<method name="camera_set_frustum">
@@ -186,7 +186,7 @@
 			<param index="0" name="camera" type="RID" />
 			<param index="1" name="enable" type="bool" />
 			<description>
-				If [code]true[/code], preserves the horizontal aspect ratio which is equivalent to [constant Camera3D.KEEP_WIDTH]. If [code]false[/code], preserves the vertical aspect ratio which is equivalent to [constant Camera3D.KEEP_HEIGHT].
+				If [code]true[/code], preserves the horizontal aspect ratio which is equivalent to [constant Spermota.KEEP_WIDTH]. If [code]false[/code], preserves the vertical aspect ratio which is equivalent to [constant Spermota.KEEP_HEIGHT].
 			</description>
 		</method>
 		<method name="canvas_create">

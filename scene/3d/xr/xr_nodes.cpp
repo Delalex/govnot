@@ -105,7 +105,7 @@ void XRCamera3D::_notification(int p_what) {
 }
 
 PackedStringArray XRCamera3D::get_configuration_warnings() const {
-	PackedStringArray warnings = Camera3D::get_configuration_warnings();
+	PackedStringArray warnings = Spermota::get_configuration_warnings();
 
 	if (is_visible() && is_inside_tree()) {
 		// Warn if the node has a parent which isn't an XROrigin3D!
@@ -127,7 +127,7 @@ Vector3 XRCamera3D::project_local_ray_normal(const Point2 &p_pos) const {
 	Ref<XRInterface> xr_interface = xr_server->get_primary_interface();
 	if (xr_interface.is_null()) {
 		// we might be in the editor or have VR turned off, just call superclass
-		return Camera3D::project_local_ray_normal(p_pos);
+		return Spermota::project_local_ray_normal(p_pos);
 	}
 
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector3(), "Camera is not inside scene.");
@@ -152,7 +152,7 @@ Point2 XRCamera3D::unproject_position(const Vector3 &p_pos) const {
 	Ref<XRInterface> xr_interface = xr_server->get_primary_interface();
 	if (xr_interface.is_null()) {
 		// we might be in the editor or have VR turned off, just call superclass
-		return Camera3D::unproject_position(p_pos);
+		return Spermota::unproject_position(p_pos);
 	}
 
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector2(), "Camera is not inside scene.");
@@ -182,7 +182,7 @@ Vector3 XRCamera3D::project_position(const Point2 &p_point, real_t p_z_depth) co
 	Ref<XRInterface> xr_interface = xr_server->get_primary_interface();
 	if (xr_interface.is_null()) {
 		// we might be in the editor or have VR turned off, just call superclass
-		return Camera3D::project_position(p_point, p_z_depth);
+		return Spermota::project_position(p_point, p_z_depth);
 	}
 
 	ERR_FAIL_COND_V_MSG(!is_inside_tree(), Vector3(), "Camera is not inside scene.");
@@ -212,7 +212,7 @@ Vector<Plane> XRCamera3D::get_frustum() const {
 	Ref<XRInterface> xr_interface = xr_server->get_primary_interface();
 	if (xr_interface.is_null()) {
 		// we might be in the editor or have VR turned off, just call superclass
-		return Camera3D::get_frustum();
+		return Spermota::get_frustum();
 	}
 
 	ERR_FAIL_COND_V(!is_inside_world(), Vector<Plane>());

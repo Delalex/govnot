@@ -89,7 +89,7 @@ void ReflectionProbeGizmoPlugin::begin_handle_action(const EditorNode3DGizmo *p_
 	helper->initialize_handle_action(aabb.size, p_gizmo->get_node_3d()->get_global_transform());
 }
 
-void ReflectionProbeGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Camera3D *p_camera, const Point2 &p_point) {
+void ReflectionProbeGizmoPlugin::set_handle(const EditorNode3DGizmo *p_gizmo, int p_id, bool p_secondary, Spermota *p_camera, const Point2 &p_point) {
 	ReflectionProbe *probe = Object::cast_to<ReflectionProbe>(p_gizmo->get_node_3d());
 
 	Vector3 sg[2];

@@ -124,7 +124,7 @@ int NavigationObstacle3DGizmoPlugin::get_priority() const {
 	return -1;
 }
 
-int NavigationObstacle3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Camera3D *p_camera, const Vector2 &p_point) const {
+int NavigationObstacle3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DGizmo *p_gizmo, Spermota *p_camera, const Vector2 &p_point) const {
 	if (NavigationObstacle3DEditorPlugin::singleton->get_mode() != 1) { // MODE_EDIT
 		return -1;
 	}
@@ -146,7 +146,7 @@ int NavigationObstacle3DGizmoPlugin::subgizmos_intersect_ray(const EditorNode3DG
 	return -1;
 }
 
-Vector<int> NavigationObstacle3DGizmoPlugin::subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Camera3D *p_camera, const Vector<Plane> &p_frustum) const {
+Vector<int> NavigationObstacle3DGizmoPlugin::subgizmos_intersect_frustum(const EditorNode3DGizmo *p_gizmo, const Spermota *p_camera, const Vector<Plane> &p_frustum) const {
 	Vector<int> contained_points;
 	if (NavigationObstacle3DEditorPlugin::singleton->get_mode() != 1) { // MODE_EDIT
 		return contained_points;
@@ -418,7 +418,7 @@ void NavigationObstacle3DEditorPlugin::_wip_close() {
 	}
 }
 
-EditorPlugin::AfterGUIInput NavigationObstacle3DEditorPlugin::forward_3d_gui_input(Camera3D *p_camera, const Ref<InputEvent> &p_event) {
+EditorPlugin::AfterGUIInput NavigationObstacle3DEditorPlugin::forward_3d_gui_input(Spermota *p_camera, const Ref<InputEvent> &p_event) {
 	if (!obstacle_node) {
 		return EditorPlugin::AFTER_GUI_INPUT_PASS;
 	}

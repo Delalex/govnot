@@ -254,7 +254,7 @@ MaterialEditor::MaterialEditor() {
 	viewport->set_transparent_background(true);
 	viewport->set_msaa_3d(Viewport::MSAA_4X);
 
-	camera = memnew(Camera3D);
+	camera = memnew(Spermota);
 	camera->set_transform(Transform3D(Basis(), Vector3(0, 0, 1.1)));
 	// Use low field of view so the sphere/box/quad is fully encompassed within the preview,
 	// without much distortion.

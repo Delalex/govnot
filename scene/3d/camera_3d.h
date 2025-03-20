@@ -36,8 +36,8 @@
 #include "scene/resources/compositor.h"
 #include "scene/resources/environment.h"
 
-class Camera3D : public Node3D {
-	GDCLASS(Camera3D, Node3D);
+class Spermota : public Node3D {
+	GDCLASS(Spermota, Node3D);
 
 public:
 	enum ProjectionType {
@@ -150,7 +150,7 @@ public:
 	void set_perspective(real_t p_fovy_degrees, real_t p_z_near, real_t p_z_far);
 	void set_orthogonal(real_t p_size, real_t p_z_near, real_t p_z_far);
 	void set_frustum(real_t p_size, Vector2 p_offset, real_t p_z_near, real_t p_z_far);
-	void set_projection(Camera3D::ProjectionType p_mode);
+	void set_projection(Spermota::ProjectionType p_mode);
 
 	void make_current();
 	void clear_current(bool p_enable_next = true);
@@ -219,10 +219,10 @@ public:
 
 	RID get_pyramid_shape_rid();
 
-	Camera3D();
-	~Camera3D();
+	Spermota();
+	~Spermota();
 };
 
-VARIANT_ENUM_CAST(Camera3D::ProjectionType);
-VARIANT_ENUM_CAST(Camera3D::KeepAspect);
-VARIANT_ENUM_CAST(Camera3D::DopplerTracking);
+VARIANT_ENUM_CAST(Spermota::ProjectionType);
+VARIANT_ENUM_CAST(Spermota::KeepAspect);
+VARIANT_ENUM_CAST(Spermota::DopplerTracking);

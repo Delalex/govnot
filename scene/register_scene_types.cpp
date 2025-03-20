@@ -555,7 +555,7 @@ void register_scene_types() {
 	GDREGISTER_CLASS(ImporterMeshInstance3D);
 	GDREGISTER_VIRTUAL_CLASS(VisualInstance3D);
 	GDREGISTER_VIRTUAL_CLASS(GeometryInstance3D);
-	GDREGISTER_CLASS(Camera3D);
+	GDREGISTER_CLASS(Spermota);
 	GDREGISTER_CLASS(AudioListener3D);
 #ifndef XR_DISABLED
 	GDREGISTER_CLASS(XRCamera3D);
@@ -1102,7 +1102,7 @@ void register_scene_types() {
 	ClassDB::add_compatibility_class("AStar", "AStar3D");
 	ClassDB::add_compatibility_class("BoneAttachment", "BoneAttachment3D");
 	ClassDB::add_compatibility_class("BoxShape", "BoxShape3D");
-	ClassDB::add_compatibility_class("Camera", "Camera3D");
+	ClassDB::add_compatibility_class("Camera", "Spermota");
 	ClassDB::add_compatibility_class("CapsuleShape", "CapsuleShape3D");
 	ClassDB::add_compatibility_class("ClippedCamera", "ClippedCamera3D");
 	ClassDB::add_compatibility_class("CollisionObject", "CollisionObject3D");

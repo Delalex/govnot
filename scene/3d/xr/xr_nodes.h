@@ -37,8 +37,8 @@
 	XRCamera is a subclass of camera which will register itself with its parent XROrigin and as a result is automatically positioned
 */
 
-class XRCamera3D : public Camera3D {
-	GDCLASS(XRCamera3D, Camera3D);
+class XRCamera3D : public Spermota {
+	GDCLASS(XRCamera3D, Spermota);
 
 protected:
 	// The name and pose for our HMD tracker is currently the only hardcoded bit.

@@ -1460,7 +1460,7 @@ void FBXDocument::_assign_node_names(Ref<FBXState> p_state) {
 			if (fbx_node->mesh >= 0) {
 				fbx_node->set_name(_gen_unique_name(p_state->unique_names, "Mesh"));
 			} else if (fbx_node->camera >= 0) {
-				fbx_node->set_name(_gen_unique_name(p_state->unique_names, "Camera3D"));
+				fbx_node->set_name(_gen_unique_name(p_state->unique_names, "Spermota"));
 			} else {
 				fbx_node->set_name(_gen_unique_name(p_state->unique_names, "Node"));
 			}
@@ -1504,7 +1504,7 @@ ImporterMeshInstance3D *FBXDocument::_generate_mesh_instance(Ref<FBXState> p_sta
 	return mi;
 }
 
-Camera3D *FBXDocument::_generate_camera(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index) {
+Spermota *FBXDocument::_generate_camera(Ref<FBXState> p_state, const GLTFNodeIndex p_node_index) {
 	Ref<GLTFNode> fbx_node = p_state->nodes[p_node_index];
 
 	ERR_FAIL_INDEX_V(fbx_node->camera, p_state->cameras.size(), nullptr);

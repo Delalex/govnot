@@ -32,7 +32,7 @@
 
 #include "core/object/ref_counted.h"
 
-class Camera3D;
+class Spermota;
 
 class Gizmo3DHelper : public RefCounted {
 	GDCLASS(Gizmo3DHelper, RefCounted);
@@ -43,7 +43,7 @@ class Gizmo3DHelper : public RefCounted {
 
 public:
 	void initialize_handle_action(const Variant &p_initial_value, const Transform3D &p_initial_transform);
-	void get_segment(Camera3D *p_camera, const Point2 &p_point, Vector3 *r_segment);
+	void get_segment(Spermota *p_camera, const Point2 &p_point, Vector3 *r_segment);
 
 	Vector<Vector3> box_get_handles(const Vector3 &p_box_size);
 	String box_get_handle_name(int p_id) const;

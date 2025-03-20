@@ -74,7 +74,7 @@ class SceneImportSettingsDialog : public ConfirmationDialog {
 
 	SubViewport *base_viewport = nullptr;
 
-	Camera3D *camera = nullptr;
+	Spermota *camera = nullptr;
 	Ref<CameraAttributesPractical> camera_attributes;
 	Ref<Environment> environment;
 	Ref<Sky> sky;
